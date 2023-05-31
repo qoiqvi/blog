@@ -7,17 +7,17 @@ import { AppButton } from 'shared/AppButton'
 import { ThemeButton } from 'shared/AppButton/ui/AppButton'
 
 export interface ThemeSwitcherProps {
-    className?: string
+  className?: string
 }
 
 export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
-    const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme } = useTheme()
 
-    return (
+  return (
         <>
             <AppButton theme={ThemeButton.CLEAR} onClick={toggleTheme} className={classNames(cls.ThemeSwitcher, {}, [className])}>
                 {theme !== Theme.DARK ? <DarcIcon /> : <LightIcon />}
             </AppButton>
         </>
-    )
+  )
 }
