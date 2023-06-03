@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "strictNullChecks": true,
+    // "strictNullChecks": true,
     "noImplicitAny": true,
     "module": "ESNext",
     "target": "es5",
