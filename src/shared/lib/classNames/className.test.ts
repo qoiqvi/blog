@@ -10,8 +10,6 @@ describe("classNames", () => {
 	})
 
 	test("three params", () => {
-		expect(classNames("red", { hovered: true }, ["as"])).toBe(
-			"red as hovered"
-		)
+		expect(classNames("red", { hovered: true }, ["as"])).toBe("red as hovered")
 	})
 })

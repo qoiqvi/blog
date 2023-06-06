@@ -1,20 +1,33 @@
-import { classNames } from 'shared/lib/className'
-import cls from './Navbar.module.scss'
-import { AppLink, AppLinkTheme } from 'shared/AppLink/ui/AppLink'
-import type { FC } from 'react'
-
+import { classNames } from "shared/lib/classNames/className"
+import cls from "./Navbar.module.scss"
+import { AppLink, AppLinkTheme } from "shared/AppLink/ui/AppLink"
+import type { FC } from "react"
+import { useTranslation } from "react-i18next"
+import { RoutePath } from "shared/config/routeConfig/routeConfig"
 
 export interface NavbarProps {
-  className?: string
+	className?: string
 }
 
-export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
-  return (
-    <div className={classNames(cls.Navbar, {}, [className])}>
-      <div className={classNames(cls.links)}>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={'/about'} className={cls.mainLink}>about</AppLink>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={'/main'}>Main</AppLink>
-      </div>
-    </div>
-  )
+export const Navbar: FC<NavbarProps> = ({ className = "" }) => {
+	const { t } = useTranslation()
+	return (
+		<div className={classNames(cls.Navbar, {}, [className])}>
+			<div className={classNames(cls.links)}>
+				<AppLink
+					theme={AppLinkTheme.SECONDARY}
+					to={RoutePath.about}
+					className={cls.mainLink}
+				>
+					{t("О странице")}
+				</AppLink>
+				<AppLink
+					theme={AppLinkTheme.SECONDARY}
+					to={RoutePath.main}
+				>
+					{t("Главная")}
+				</AppLink>
+			</div>
+		</div>
+	)
 }

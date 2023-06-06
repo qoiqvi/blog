@@ -15,7 +15,15 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        project: 'tsconfig.json'
+        project: './tsconfig.json',
+        parser: '@typescript-eslint/parser',
+        // project: 'tsconfig.json',
+        // tsconfigRootDir: __dirname,
+        // "ecmaVersion": "latest",
+        // "sourceType": "module",
+        // "ecmaFeatures": {
+        //     "jsx": true
+        // }
     },
     plugins: [
         'react'
@@ -46,7 +54,10 @@ module.exports = {
         "no-unused-expressions": "off",
         "@typescript-eslint/no-confusing-void-expression": 0,
         "@typescript-eslint/no-unused-expressions": 0,
-        'i18next/no-literal-string': [2, { markupOnly: true }]
+        'i18next/no-literal-string': [2, { markupOnly: true }],
+        "space-before-function-paren": "off",
+        "@typescript-eslint/space-before-function-paren": "off",
+        "n/handle-callback-err": 0,
         // 'allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing': 0
     }
 }
