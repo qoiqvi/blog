@@ -23,10 +23,11 @@
     }
   },
   "include": [
-    "./config/jest/setupTests.ts",
-    "./config/build/loaders/buildCssLoaders.ts",
-    "./config/build/buildLoaders.ts",
     "./src/**/*.ts",
     "./src/**/*.tsx",
+    "./config/jest/jestEmptyComponent.tsx",
+    "./config/jest/*.ts",
+    "./config/build/*.ts",
+    "./webpack.config.ts"
   ]
 }

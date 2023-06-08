@@ -9,10 +9,5 @@ export interface ErrorPageProps {
 
 export const ErrorPage: FC<ErrorPageProps> = ({ className }) => {
 	const { t } = useTranslation()
-	return (
-		<div className={classNames(cls.ErrorPage, {}, [className])}>
-			{t("Страница не найдена")}
-			dsadsadisadojas
-		</div>
-	)
+	return <div className={classNames(cls.ErrorPage, {}, [className])}>{t("Страница не найдена")}</div>
 }
