@@ -1,7 +1,6 @@
 import { classNames } from "shared/lib/classNames/className"
-import { AppButton } from "shared/AppButton"
+import { AppButton, ThemeButton } from "shared/ui/AppButton"
 import { useTranslation } from "react-i18next"
-import { ThemeButton } from "shared/AppButton/ui/AppButton"
 import type { FC } from "react"
 export interface LanguageSwitcherProps {
 	className?: string
