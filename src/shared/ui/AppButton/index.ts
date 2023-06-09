@@ -1,3 +1,3 @@
-import { AppButton, ThemeButton } from './ui/AppButton'
+import { AppButton, ButtonTheme, ButtonSize } from "./ui/AppButton"
 
-export { AppButton, ThemeButton }
+export { AppButton, ButtonTheme, ButtonSize }

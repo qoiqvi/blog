@@ -46,7 +46,7 @@ module.exports = {
     }],
     "space-before-function-paren": "off",
     "@typescript-eslint/space-before-function-paren": "off",
-    "n/handle-callback-err": 0
-    // 'allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing': 0
+    "n/handle-callback-err": 0,
+    "i18next/no-literal-string": [2, { "ignoreAttribute": ["data-testid"] }]
   }
 };
