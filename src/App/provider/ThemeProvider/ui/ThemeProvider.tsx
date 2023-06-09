@@ -2,7 +2,7 @@ import { type FC, useMemo, useState, type ReactNode } from "react"
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from "../lib/themeContext"
 
 interface ThemeProviderProps {
-	initialTheme: Theme
+	initialTheme?: Theme
 	children: ReactNode
 }
 

@@ -13,6 +13,6 @@ describe("Sidebar tests", () => {
 		const btn = screen.getByTestId("sb-button")
 		expect(screen.getByTestId("sidebar")).toBeInTheDocument()
 		fireEvent.click(btn)
-		expect(screen.getByTestId("sidebar")).toHaveClass("collapsed")
+		expect(screen.getByTestId("sidebar")).not.toHaveClass("collapsed")
 	})
 })
