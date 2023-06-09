@@ -12,7 +12,7 @@ module.exports = {
     project: './tsconfig.json',
     parser: '@typescript-eslint/parser'
   },
-  plugins: ['react'],
+  plugins: ['react', 'react-hooks'],
   settings: {
     'react': {
       "version": "detect"
@@ -44,6 +44,9 @@ module.exports = {
     "space-before-function-paren": "off",
     "@typescript-eslint/space-before-function-paren": "off",
     "n/handle-callback-err": 0,
-    "i18next/no-literal-string": 0
+    "i18next/no-literal-string": 0,
+    "multiline-ternary": 0,
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "error" // Checks effect dependencies
   }
 }

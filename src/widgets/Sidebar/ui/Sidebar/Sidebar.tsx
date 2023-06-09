@@ -16,7 +16,7 @@ export interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
-	const [collapsed, setCollaped] = useState<boolean>(false)
+	const [collapsed, setCollaped] = useState<boolean>(true)
 	const { t } = useTranslation()
 	const onToggle = () => {
 		setCollaped(!collapsed)
@@ -33,8 +33,14 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
 						to={RoutePath.about}
 						className={cls.item}
 					>
-						<MainIcon className={cls.icon} />
-						<span className={cls.link}>{t("О странице")}</span>
+						{collapsed ? (
+							<MainIcon className={cls.icon} />
+						) : (
+							<>
+								<MainIcon className={cls.icon} />
+								<span className={cls.link}>{t("О странице")}</span>
+							</>
+						)}
 					</AppLink>
 				</div>
 				<div>
@@ -43,8 +49,14 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
 						to={RoutePath.main}
 						className={cls.item}
 					>
-						<AboutIcon className={cls.icon} />
-						<span className={cls.link}>{t("Главная")}</span>
+						{collapsed ? (
+							<AboutIcon className={cls.icon} />
+						) : (
+							<>
+								<AboutIcon className={cls.icon} />
+								<span className={cls.link}>{t("Главная")}</span>
+							</>
+						)}
 					</AppLink>
 				</div>
 			</div>
