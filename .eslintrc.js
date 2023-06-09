@@ -41,12 +41,9 @@ module.exports = {
     "no-unused-expressions": "off",
     "@typescript-eslint/no-confusing-void-expression": 0,
     "@typescript-eslint/no-unused-expressions": 0,
-    'i18next/no-literal-string': [2, {
-      markupOnly: true
-    }],
     "space-before-function-paren": "off",
     "@typescript-eslint/space-before-function-paren": "off",
     "n/handle-callback-err": 0,
-    "i18next/no-literal-string": [2, { "ignoreAttribute": ["data-testid"] }]
+    "i18next/no-literal-string": 0
   }
-};
+}

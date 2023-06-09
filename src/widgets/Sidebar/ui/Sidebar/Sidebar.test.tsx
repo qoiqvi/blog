@@ -1,15 +1,15 @@
 import { fireEvent, screen } from "@testing-library/react"
 import { Sidebar } from "./Sidebar"
-import { renderWithTranslation } from "shared/lib/tests/renderWithTranslation/renderWithTranslation"
+import { ComponentRender } from "shared/lib/tests/ComponentRender/ComponentRender"
 
 describe("Sidebar tests", () => {
 	test("To be in the doc", () => {
-		renderWithTranslation(<Sidebar />)
+		ComponentRender(<Sidebar />)
 		expect(screen.getByTestId("sidebar")).toBeInTheDocument()
 		screen.debug()
 	})
 	test("Collapsed", () => {
-		renderWithTranslation(<Sidebar />)
+		ComponentRender(<Sidebar />)
 		const btn = screen.getByTestId("sb-button")
 		expect(screen.getByTestId("sidebar")).toBeInTheDocument()
 		fireEvent.click(btn)
