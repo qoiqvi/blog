@@ -2,8 +2,8 @@ import { classNames } from "shared/lib/classNames/className"
 import cls from "./Navbar.module.scss"
 import { useState, type FC } from "react"
 import { AppButton, ButtonTheme } from "shared/ui/AppButton"
-import { Modal } from "shared/ui/Modal"
 import { useTranslation } from "react-i18next"
+import { LoginModal } from "features/AuthByUserName"
 
 export interface NavbarProps {
 	className?: string
@@ -15,23 +15,22 @@ export const Navbar: FC<NavbarProps> = ({ className = "" }) => {
 	const onClose = () => {
 		setIsAuthOpen(false)
 	}
+	const onOpen = () => {
+		setIsAuthOpen(true)
+	}
 	return (
 		<div className={classNames(cls.Navbar, {}, [className])}>
 			<AppButton
 				className={classNames(cls.links)}
 				theme={ButtonTheme.BACKGROUND_INVERTED}
-				onClick={() => setIsAuthOpen(true)}
+				onClick={onOpen}
 			>
 				{t("Войти")}
 			</AppButton>
-			<Modal
+			<LoginModal
 				isOpen={isAuthOpen}
 				onClose={onClose}
-			>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit sint hic debitis ullam voluptatum
-				excepturi doloremque incidunt ipsam architecto quo porro unde dolorem fugit, commodi laboriosam ut,
-				voluptatibus explicabo? Obcaecati?
-			</Modal>
+			></LoginModal>
 		</div>
 	)
 }

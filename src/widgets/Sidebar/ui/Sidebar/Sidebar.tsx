@@ -37,7 +37,11 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
 							<MainIcon className={cls.icon} />
 						) : (
 							<>
-								<MainIcon className={cls.icon} />
+								<MainIcon
+									// width={50}
+									// height={50}
+									className={cls.icon}
+								/>
 								<span className={cls.link}>{t("О странице")}</span>
 							</>
 						)}
