@@ -2,6 +2,8 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { AppButton, ButtonSize, ButtonTheme } from "./AppButton"
+import { ThemeDecorator } from "shared/config/storybook/themeDecorator"
+import { Theme } from "App/provider/ThemeProvider"
 
 const meta = {
 	title: "shared/Button",
@@ -53,4 +55,21 @@ export const ButtonSizeXL: Story = {
 		theme: ButtonTheme.OUTLINED,
 		size: ButtonSize.XL,
 	},
+}
+
+export const DisabledLight: Story = {
+	args: {
+		children: "Button onclick dima eshre",
+		size: ButtonSize.M,
+		disabled: true,
+	},
+}
+
+export const DisabledDark: Story = {
+	args: {
+		children: "Button onclick dima eshre",
+		size: ButtonSize.M,
+		disabled: true,
+	},
+	decorators: [ThemeDecorator(Theme.DARK)],
 }

@@ -1,6 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-webpack5"
 import path from "path"
-import { type RuleSetRule } from "webpack"
+import { DefinePlugin, type RuleSetRule } from "webpack"
 import type { Configuration, webpack } from "webpack"
 import buildCssLoaders from "../build/loaders/buildCssLoaders"
 
@@ -23,6 +23,11 @@ const config: StorybookConfig = {
 			loader: require.resolve("@svgr/webpack"),
 		})
 		config.module?.rules?.push(buildCssLoaders(true))
+		config.plugins?.push(
+			new DefinePlugin({
+				__IS__DEV__: true,
+			})
+		)
 		return config
 	},
 }

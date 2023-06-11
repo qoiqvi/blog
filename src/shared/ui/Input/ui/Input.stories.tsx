@@ -15,13 +15,13 @@ type Story = StoryObj<typeof Input>
 
 export const InputLight: Story = {
 	args: {
-		children: "Button onclick dima eshre",
+		autofocus: true,
 	},
 }
 
 export const InputDark: Story = {
 	args: {
-		children: "Button onclick dima eshre",
+		autofocus: true,
 	},
 	decorators: [ThemeDecorator(Theme.DARK)],
 }

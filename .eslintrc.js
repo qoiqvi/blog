@@ -47,6 +47,7 @@ module.exports = {
     "i18next/no-literal-string": 0,
     "multiline-ternary": 0,
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "error" // Checks effect dependencies
+    "react-hooks/exhaustive-deps": "error", // Checks effect dependencies
+    "react/display-name": 0
   }
 }

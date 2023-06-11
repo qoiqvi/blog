@@ -1,9 +1,11 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./Navbar.module.scss"
-import { useState, type FC } from "react"
+import { useState, type FC, useCallback } from "react"
 import { AppButton, ButtonTheme } from "shared/ui/AppButton"
 import { useTranslation } from "react-i18next"
 import { LoginModal } from "features/AuthByUserName"
+import { useDispatch, useSelector } from "react-redux"
+import { UserSliceActions, getUserAuthData } from "entities/User"
 
 export interface NavbarProps {
 	className?: string
@@ -12,11 +14,30 @@ export interface NavbarProps {
 export const Navbar: FC<NavbarProps> = ({ className = "" }) => {
 	const { t } = useTranslation()
 	const [isAuthOpen, setIsAuthOpen] = useState(false)
-	const onClose = () => {
+	const dispatch = useDispatch()
+	const onClose = useCallback(() => {
 		setIsAuthOpen(false)
-	}
-	const onOpen = () => {
+	}, [])
+	const onOpen = useCallback(() => {
 		setIsAuthOpen(true)
+	}, [])
+	const onLogOut = useCallback(() => {
+		dispatch(UserSliceActions.logout())
+	}, [])
+	const authData = useSelector(getUserAuthData)
+
+	if (authData) {
+		return (
+			<div className={classNames(cls.Navbar, {}, [className])}>
+				<AppButton
+					className={classNames(cls.links)}
+					theme={ButtonTheme.BACKGROUND_INVERTED}
+					onClick={onLogOut}
+				>
+					{t("Выйти")}
+				</AppButton>
+			</div>
+		)
 	}
 	return (
 		<div className={classNames(cls.Navbar, {}, [className])}>

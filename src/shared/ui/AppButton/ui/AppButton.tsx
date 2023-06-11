@@ -7,6 +7,7 @@ export interface AppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> 
 	theme?: ButtonTheme
 	square?: boolean
 	size?: ButtonSize
+	disabled?: boolean
 }
 
 export enum ButtonSize {
@@ -23,11 +24,16 @@ export enum ButtonTheme {
 }
 
 export const AppButton: FC<AppButtonProps> = (props) => {
-	const { className, square, size = ButtonSize.M, children, theme, ...otherProps } = props
+	const { className, square, size = ButtonSize.M, children, theme, disabled, ...otherProps } = props
 	return (
 		<button
 			{...otherProps}
-			className={classNames(cls.AppButton, { [cls.square]: square }, [className, cls[size], cls[theme]])}
+			disabled={disabled}
+			className={classNames(cls.AppButton, { [cls.square]: square, [cls.disabled]: disabled }, [
+				className,
+				cls[size],
+				cls[theme],
+			])}
 		>
 			{children}
 		</button>
