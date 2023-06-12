@@ -48,6 +48,7 @@ module.exports = {
     "multiline-ternary": 0,
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "error", // Checks effect dependencies
-    "react/display-name": 0
+    "react/display-name": 0,
+    "@typescript-eslint/no-dynamic-delete": 0
   }
 }

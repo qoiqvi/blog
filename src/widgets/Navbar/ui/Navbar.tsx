@@ -23,7 +23,7 @@ export const Navbar: FC<NavbarProps> = ({ className = "" }) => {
 	}, [])
 	const onLogOut = useCallback(() => {
 		dispatch(UserSliceActions.logout())
-	}, [])
+	}, [dispatch])
 	const authData = useSelector(getUserAuthData)
 
 	if (authData) {
@@ -48,10 +48,12 @@ export const Navbar: FC<NavbarProps> = ({ className = "" }) => {
 			>
 				{t("Войти")}
 			</AppButton>
-			<LoginModal
-				isOpen={isAuthOpen}
-				onClose={onClose}
-			></LoginModal>
+			{isAuthOpen && (
+				<LoginModal
+					isOpen={isAuthOpen}
+					onClose={onClose}
+				></LoginModal>
+			)}
 		</div>
 	)
 }

@@ -73,3 +73,53 @@ export const DisabledDark: Story = {
 	},
 	decorators: [ThemeDecorator(Theme.DARK)],
 }
+
+export const SquareMDark: Story = {
+	args: {
+		children: ">",
+		square: true,
+		size: ButtonSize.M,
+	},
+	decorators: [ThemeDecorator(Theme.DARK)],
+}
+
+export const SquareLDark: Story = {
+	args: {
+		children: ">",
+		square: true,
+		size: ButtonSize.L,
+	},
+	decorators: [ThemeDecorator(Theme.DARK)],
+}
+
+export const SquareXLDark: Story = {
+	args: {
+		children: ">",
+		square: true,
+		size: ButtonSize.XL,
+	},
+	decorators: [ThemeDecorator(Theme.DARK)],
+}
+
+export const SquareMLight: Story = {
+	args: {
+		children: "OK",
+		square: true,
+		size: ButtonSize.M,
+	},
+}
+export const SquareLLight: Story = {
+	args: {
+		children: "OK",
+		square: true,
+		size: ButtonSize.L,
+	},
+}
+
+export const SquareXLLight: Story = {
+	args: {
+		children: "OK",
+		square: true,
+		size: ButtonSize.XL,
+	},
+}
