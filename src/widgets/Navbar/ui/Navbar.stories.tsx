@@ -15,7 +15,7 @@ type Story = StoryObj<typeof Navbar>
 
 export const Light: Story = {
 	args: {},
-	decorators: [StoreDecorator({ user: { AuthData: { id: 2, username: "123" } } })],
+	decorators: [StoreDecorator({ user: { AuthData: { id: "2", username: "123" } } })],
 }
 
 export const Dark: Story = {
@@ -25,7 +25,7 @@ export const Dark: Story = {
 		StoreDecorator({
 			user: {
 				AuthData: {
-					id: 1,
+					id: "1",
 					username: "admin",
 				},
 			},
