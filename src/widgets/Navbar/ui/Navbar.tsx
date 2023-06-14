@@ -1,6 +1,6 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./Navbar.module.scss"
-import { useState, type FC, useCallback } from "react"
+import { useState, type FC, useCallback, memo } from "react"
 import { AppButton, ButtonTheme } from "shared/ui/AppButton"
 import { useTranslation } from "react-i18next"
 import { LoginModal } from "features/AuthByUserName"
@@ -11,7 +11,7 @@ export interface NavbarProps {
 	className?: string
 }
 
-export const Navbar: FC<NavbarProps> = ({ className = "" }) => {
+export const Navbar: FC<NavbarProps> = memo(({ className = "" }) => {
 	const { t } = useTranslation()
 	const [isAuthOpen, setIsAuthOpen] = useState(false)
 	const dispatch = useDispatch()
@@ -56,4 +56,4 @@ export const Navbar: FC<NavbarProps> = ({ className = "" }) => {
 			)}
 		</div>
 	)
-}
+})

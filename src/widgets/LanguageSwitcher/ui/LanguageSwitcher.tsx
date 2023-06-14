@@ -1,14 +1,15 @@
 import { classNames } from "shared/lib/classNames/className"
 import { AppButton, ButtonTheme } from "shared/ui/AppButton"
 import { useTranslation } from "react-i18next"
-import type { FC } from "react"
+import { memo, type FC } from "react"
 
 export interface LanguageSwitcherProps {
 	className?: string
 	short: boolean
 }
 
-export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className = "", short }) => {
+export const LanguageSwitcher: FC<LanguageSwitcherProps> = memo((props) => {
+	const { className = "", short } = props
 	const { t, i18n } = useTranslation()
 	const changeLang = (): void => {
 		void i18n.changeLanguage(i18n.language === "ru" ? "en" : "ru")
@@ -22,4 +23,4 @@ export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className = "", sh
 			{t(short ? "Короткий язык" : "Язык")}
 		</AppButton>
 	)
-}
+})

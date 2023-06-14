@@ -49,6 +49,8 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "error", // Checks effect dependencies
     "react/display-name": 0,
-    "@typescript-eslint/no-dynamic-delete": 0
+    "@typescript-eslint/no-dynamic-delete": 0,
+    "react/prop-types": 0,
+    "@typescript-eslint/no-misused-promises": 0
   }
 }

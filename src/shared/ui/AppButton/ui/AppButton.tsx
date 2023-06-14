@@ -1,6 +1,6 @@
 import cls from "./AppButton.module.scss"
 import { classNames } from "shared/lib/classNames/className"
-import { type ButtonHTMLAttributes, type FC } from "react"
+import { memo, type ButtonHTMLAttributes, type FC } from "react"
 
 export interface AppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string
@@ -23,7 +23,7 @@ export enum ButtonTheme {
 	BACKGROUND_INVERTED = "background_inverted",
 }
 
-export const AppButton: FC<AppButtonProps> = (props) => {
+export const AppButton: FC<AppButtonProps> = memo((props) => {
 	const { className, square, size = ButtonSize.M, children, theme, disabled, ...otherProps } = props
 	return (
 		<button
@@ -38,4 +38,4 @@ export const AppButton: FC<AppButtonProps> = (props) => {
 			{children}
 		</button>
 	)
-}
+})
