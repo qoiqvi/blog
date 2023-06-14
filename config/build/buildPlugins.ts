@@ -5,7 +5,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 
 export const buildPlugins = (options: BuildOptions): webpack.WebpackPluginInstance[] => {
-	const { isDev, path } = options
+	const { isDev, path, apiURL } = options
 	const plugins = [
 		new HtmlWebpackPlugin({
 			template: path.html,
@@ -16,7 +16,8 @@ export const buildPlugins = (options: BuildOptions): webpack.WebpackPluginInstan
 			chunkFilename: "css/[name].[contenthash:8].css",
 		}),
 		new DefinePlugin({
-			__IS__DEV__: JSON.stringify(isDev),
+			_IS_DEV_: JSON.stringify(isDev),
+			_API_URL_: JSON.stringify(apiURL),
 		}),
 	]
 	if (isDev) {

@@ -51,6 +51,8 @@ module.exports = {
     "react/display-name": 0,
     "@typescript-eslint/no-dynamic-delete": 0,
     "react/prop-types": 0,
-    "@typescript-eslint/no-misused-promises": 0
+    "@typescript-eslint/no-misused-promises": 0,
+    "@typescript-eslint/no-invalid-void-type": 0,
+    "@typescript-eslint/no-floating-promises": 0
   }
 }

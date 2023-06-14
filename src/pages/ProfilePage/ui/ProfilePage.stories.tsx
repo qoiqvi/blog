@@ -10,8 +10,8 @@ const meta = {
 	component: ProfilePage,
 } satisfies Meta<typeof ProfilePage>
 
-export default meta
 type Story = StoryObj<typeof ProfilePage>
+export default meta
 
 export const Light: Story = {
 	args: {},
