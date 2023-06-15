@@ -4,18 +4,22 @@
 	max-width: 400px;
 }
 
-.header {
+.AvatarWrapper {
 	display: flex;
-}
-
-.editBtn {
-	margin-left: auto;
-}
-
-.data {
-	margin-top: 30px;
+	width: 100%;
+	justify-content: center;
 }
 
 .input {
 	margin-top: 10px;
+}
+
+.loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.editting {
+	border: 3px solid var(--inverted-primary-color);
 }

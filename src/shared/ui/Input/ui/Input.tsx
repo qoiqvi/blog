@@ -1,4 +1,4 @@
-import { classNames } from "shared/lib/classNames/className"
+import { type Mods, classNames } from "shared/lib/classNames/className"
 import cls from "./Input.module.scss"
 import {
 	useState,
@@ -10,19 +10,21 @@ import {
 	type MutableRefObject,
 } from "react"
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "value">
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "value" | "readOnly">
 export interface InputProps extends HTMLInputProps {
 	className?: string
-	value?: string
+	value: string | undefined | number
 	autofocus?: boolean
 	type?: string
 	onChange?: (value: string) => void
 	placeholder?: string
+	readonly?: boolean
 }
 
 export const Input = memo((props: InputProps) => {
-	const { className, autofocus, value, onChange, type = "text", placeholder, ...otherProps } = props
+	const { className, autofocus, value, onChange, type = "text", placeholder, readonly = false, ...otherProps } = props
 	const [focus, setFocus] = useState(false)
+	console.log(value)
 	const [caretPosition, setCaretPosition] = useState(0)
 	const ref = useRef() as MutableRefObject<HTMLInputElement>
 	const onFocus = () => {
@@ -44,8 +46,11 @@ export const Input = memo((props: InputProps) => {
 			ref?.current?.focus()
 		}
 	}, [autofocus])
+	const mods: Mods = {
+		[cls.readonly]: readonly,
+	}
 	return (
-		<div className={classNames(cls.InputWrapper, {}, [className])}>
+		<div className={classNames(cls.InputWrapper, mods, [className])}>
 			{placeholder && <div>{`${placeholder}>`}</div>}
 			<div className={cls.caretWrapper}>
 				<input
@@ -58,6 +63,7 @@ export const Input = memo((props: InputProps) => {
 					onBlur={onBlur}
 					autoFocus={focus}
 					onSelect={onSelect}
+					readOnly={readonly}
 					{...otherProps}
 				/>
 				{focus && (

@@ -1,4 +1,4 @@
-import { type ReducersMapObject, configureStore, Reducer, CombinedState } from "@reduxjs/toolkit"
+import { type ReducersMapObject, configureStore, type Reducer, type CombinedState } from "@reduxjs/toolkit"
 import type { StateSchema, ThunkExtraArg } from "./stateSchema"
 import { counterReducer } from "entities/Counter"
 import { UserSliceReducer } from "entities/User"

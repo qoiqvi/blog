@@ -19,6 +19,7 @@ export enum ButtonSize {
 export enum ButtonTheme {
 	CLEAR = "clear",
 	OUTLINED = "outlined",
+	OULINED_RED = "outlined_red",
 	BACKGROUND = "background",
 	BACKGROUND_INVERTED = "background_inverted",
 }
