@@ -1,6 +1,14 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./Input.module.scss"
-import { useState, type ChangeEvent, type InputHTMLAttributes, useEffect, useRef, memo } from "react"
+import {
+	useState,
+	type ChangeEvent,
+	type InputHTMLAttributes,
+	useEffect,
+	useRef,
+	memo,
+	type MutableRefObject,
+} from "react"
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "value">
 export interface InputProps extends HTMLInputProps {
@@ -16,7 +24,7 @@ export const Input = memo((props: InputProps) => {
 	const { className, autofocus, value, onChange, type = "text", placeholder, ...otherProps } = props
 	const [focus, setFocus] = useState(false)
 	const [caretPosition, setCaretPosition] = useState(0)
-	const ref = useRef<HTMLInputElement>()
+	const ref = useRef() as MutableRefObject<HTMLInputElement>
 	const onFocus = () => {
 		setFocus(true)
 	}

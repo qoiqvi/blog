@@ -1,4 +1,3 @@
-import type { DeepPartial } from "@reduxjs/toolkit"
 import { render } from "@testing-library/react"
 import { StoreProvider } from "App/provider/StoreProvider"
 import type { StateSchema } from "App/provider/StoreProvider/config/stateSchema"

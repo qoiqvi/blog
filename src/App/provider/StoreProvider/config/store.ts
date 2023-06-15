@@ -1,4 +1,4 @@
-import { type ReducersMapObject, configureStore } from "@reduxjs/toolkit"
+import { type ReducersMapObject, configureStore, Reducer, CombinedState } from "@reduxjs/toolkit"
 import type { StateSchema, ThunkExtraArg } from "./stateSchema"
 import { counterReducer } from "entities/Counter"
 import { UserSliceReducer } from "entities/User"
@@ -24,7 +24,7 @@ export function createReduxStore(
 	}
 
 	const store = configureStore({
-		reducer: reducerManager.reduce,
+		reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
 		devTools: _IS_DEV_,
 		preloadedState: initialState,
 		middleware: (getDefaultMiddleware) =>
@@ -34,7 +34,7 @@ export function createReduxStore(
 				},
 			}),
 	})
-	//	@ts-expect-error dsada
+	// @ts-expect-error dasda
 	store.reducerManager = reducerManager
 	return store
 }

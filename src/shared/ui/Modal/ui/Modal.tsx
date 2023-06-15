@@ -1,4 +1,4 @@
-import { classNames } from "shared/lib/classNames/className"
+import { type Mods, classNames } from "shared/lib/classNames/className"
 import cls from "./Modal.module.scss"
 import { useState, type FC, type ReactNode, useRef, useEffect, useCallback } from "react"
 import { Portal } from "shared/ui/Portal/Portal"
@@ -18,7 +18,7 @@ export const Modal: FC<ModalProps> = (props) => {
 	const [isClosing, setIsClosing] = useState(false)
 	const [isMounted, setIsMounted] = useState(false)
 	const closingRef = useRef<ReturnType<typeof setTimeout>>()
-	const mods: Record<string, boolean> = {
+	const mods: Mods = {
 		[cls.opened]: isOpen,
 		[cls.isClosing]: isClosing,
 	}
