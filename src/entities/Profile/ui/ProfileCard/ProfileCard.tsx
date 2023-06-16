@@ -8,6 +8,8 @@ import { Loader } from "shared/ui/Loader"
 import { TextAlingn } from "shared/ui/Text/ui/Text"
 import { ProfilePageHeader } from "pages/ProfilePage/ui/ProfilePageHeader/ProfilePageHeader"
 import { Avatar } from "shared/ui/Avatar"
+import { Select } from "shared/ui/Select"
+import { Currency, CurrencySelect } from "entities/Currency"
 
 export interface ProfileCardProps {
 	className?: string
@@ -121,13 +123,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
 						readonly={readonly}
 						onChange={onChangeCity}
 					/>
-					<Input
-						value={formData?.currency}
-						placeholder={t("Валюта")}
-						className={cls.input}
-						readonly={readonly}
-						onChange={onChangeCurrency}
-					/>
+					<CurrencySelect onChange={onChangeCurrency} />
 					<Input
 						value={formData?.avatar}
 						placeholder={t("Аватар")}
