@@ -6,7 +6,13 @@
 		display: flex;
 	}
 
-	.editBtn {
+	.editBtn,
+	.saveBtn,
+	.cancelBtn {
 		margin-left: auto;
 	}
+}
+
+.saveBtn {
+	margin-left: 10px;
 }

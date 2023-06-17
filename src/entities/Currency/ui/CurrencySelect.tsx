@@ -4,9 +4,9 @@ import { Currency } from "../model/types/currency"
 import { useCallback } from "react"
 
 export interface CurrencySelectProps {
-	className?: string
 	value?: Currency
 	onChange?: (value: Currency) => void
+	readonly?: boolean
 }
 const data = [
 	{ value: Currency.RUB, content: Currency.RUB },
@@ -15,7 +15,7 @@ const data = [
 ]
 
 export const CurrencySelect = (props: CurrencySelectProps) => {
-	const { className, onChange, value } = props
+	const { onChange, value, readonly } = props
 	const onChangeHandler = useCallback(
 		(value: string) => {
 			onChange?.(value as Currency)
@@ -25,6 +25,8 @@ export const CurrencySelect = (props: CurrencySelectProps) => {
 	const { t } = useTranslation()
 	return (
 		<Select
+			readonly={readonly}
+			value={value}
 			placeholder={t("Валюта")}
 			data={data}
 			onChange={onChangeHandler}

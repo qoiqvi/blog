@@ -8,11 +8,17 @@ import {
 	getProfileForm,
 	getProfileIsLoading,
 	getProfileReadonly,
+	getProfileValidateErrors,
 	profileSliceActions,
 	profileSliceReducer,
 } from "entities/Profile"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
 import { useSelector } from "react-redux"
+import type { Currency } from "entities/Currency"
+import type { Country } from "entities/Country"
+import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader"
+import { Text, TextTheme } from "shared/ui/Text"
+import { TextAlingn } from "shared/ui/Text/ui/Text"
 
 export interface ProfilePageProps {
 	className?: string
@@ -28,6 +34,7 @@ const ProfilePage = memo((props: ProfilePageProps) => {
 	const isLoading = useSelector(getProfileIsLoading)
 	const error = useSelector(getProfileError)
 	const readonly = useSelector(getProfileReadonly)
+	const validateError = useSelector(getProfileValidateErrors)
 	const dispatch = useAppDispatch()
 	console.log(formData)
 	useEffect(() => {
@@ -76,11 +83,34 @@ const ProfilePage = memo((props: ProfilePageProps) => {
 		[dispatch]
 	)
 
+	const onChangeCurrency = useCallback(
+		(value?: Currency) => {
+			dispatch(profileSliceActions.updateProfileFormData({ currency: value }))
+		},
+		[dispatch]
+	)
+
+	const onChangeCountry = useCallback(
+		(value?: Country) => {
+			dispatch(profileSliceActions.updateProfileFormData({ country: value }))
+		},
+		[dispatch]
+	)
+
 	return (
 		<DynamicModuleLoader
 			reducers={reducers}
 			removeAfterUnmount
 		>
+			<ProfilePageHeader />
+			{validateError?.length &&
+				validateError.map((err) => (
+					<Text
+						theme={TextTheme.ERROR}
+						text={err}
+						key={err}
+					/>
+				))}
 			<div className={classNames("", {}, [className])}>
 				<ProfileCard
 					formData={formData}
@@ -93,6 +123,8 @@ const ProfilePage = memo((props: ProfilePageProps) => {
 					onChangeAge={onChangeAge}
 					onChangeCity={onChangeCity}
 					onChangeAvatar={onChangeAvatar}
+					onChangeCurrency={onChangeCurrency}
+					onChangeCountry={onChangeCountry}
 				/>
 			</div>
 		</DynamicModuleLoader>

@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { CurrencySelect } from "./CurrencySelect"
+import { CountrySelect } from "./CountrySelect"
 import { ThemeDecorator } from "shared/config/storybook/themeDecorator"
 import { Theme } from "App/provider/ThemeProvider"
 
 const meta = {
-	title: "entities/CurrencySelect",
-	component: CurrencySelect,
-} satisfies Meta<typeof CurrencySelect>
+	title: "entities/CountrySelect",
+	component: CountrySelect,
+} satisfies Meta<typeof CountrySelect>
 
 export default meta
-type Story = StoryObj<typeof CurrencySelect>
+type Story = StoryObj<typeof CountrySelect>
 
 export const Light: Story = {
 	args: {},

@@ -6,10 +6,9 @@ import { Input } from "shared/ui/Input"
 import { type Profile } from "entities/Profile/model/types/profile"
 import { Loader } from "shared/ui/Loader"
 import { TextAlingn } from "shared/ui/Text/ui/Text"
-import { ProfilePageHeader } from "pages/ProfilePage/ui/ProfilePageHeader/ProfilePageHeader"
 import { Avatar } from "shared/ui/Avatar"
-import { Select } from "shared/ui/Select"
-import { Currency, CurrencySelect } from "entities/Currency"
+import { type Currency, CurrencySelect } from "entities/Currency"
+import { type Country, CountrySelect } from "entities/Country"
 
 export interface ProfileCardProps {
 	className?: string
@@ -20,8 +19,8 @@ export interface ProfileCardProps {
 	onChangeFirstname?: (value?: string) => void
 	onChangeLastname?: (value?: string) => void
 	onChangeCity?: (value?: string) => void
-	onChangeCountry?: (value?: string) => void
-	onChangeCurrency?: (value?: string) => void
+	onChangeCountry?: (value?: Country) => void
+	onChangeCurrency?: (value?: Currency) => void
 	onChangeAge?: (value?: string) => void
 	onChangeUsername?: (value?: string) => void
 	onChangeAvatar?: (value?: string) => void
@@ -69,7 +68,6 @@ export const ProfileCard = (props: ProfileCardProps) => {
 	}
 	return (
 		<div>
-			<ProfilePageHeader />
 			<div className={classNames(cls.ProfileCard, mods, [className])}>
 				{formData?.avatar && (
 					<div className={cls.AvatarWrapper}>
@@ -105,16 +103,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
 						value={formData?.age}
 						placeholder={t("Возраст")}
 						className={cls.input}
-						type="number"
 						readonly={readonly}
 						onChange={onChangeAge}
-					/>
-					<Input
-						value={formData?.country}
-						placeholder={t("Страна")}
-						className={cls.input}
-						readonly={readonly}
-						onChange={onChangeCountry}
 					/>
 					<Input
 						value={formData?.city}
@@ -123,7 +113,16 @@ export const ProfileCard = (props: ProfileCardProps) => {
 						readonly={readonly}
 						onChange={onChangeCity}
 					/>
-					<CurrencySelect onChange={onChangeCurrency} />
+					<CurrencySelect
+						readonly={readonly}
+						value={formData?.currency}
+						onChange={onChangeCurrency}
+					/>
+					<CountrySelect
+						value={formData?.country}
+						readonly={readonly}
+						onChange={onChangeCountry}
+					/>
 					<Input
 						value={formData?.avatar}
 						placeholder={t("Аватар")}

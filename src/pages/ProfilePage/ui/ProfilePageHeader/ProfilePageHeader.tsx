@@ -45,10 +45,16 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
 					</AppButton>
 				) : (
 					<>
-						<AppButton onClick={onCancelEdit}>{t("Отменить")}</AppButton>
+						<AppButton
+							className={cls.cancelBtn}
+							theme={ButtonTheme.OUTLINED_RED}
+							onClick={onCancelEdit}
+						>
+							{t("Отменить")}
+						</AppButton>
 						<AppButton
 							onClick={onSave}
-							theme={ButtonTheme.OULINED_RED}
+							theme={ButtonTheme.OUTLINED}
 							className={cls.saveBtn}
 						>
 							{t("Сохранить")}
