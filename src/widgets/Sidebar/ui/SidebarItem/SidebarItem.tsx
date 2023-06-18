@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next"
 import { AppLink, AppLinkTheme } from "shared/ui/AppLink"
 import { SidebarItemsList } from "widgets/Sidebar/model/items"
 import { memo } from "react"
+import { useSelector } from "react-redux"
+import { getUserAuthData } from "entities/User"
 export interface SidebarItemProps {
 	className?: string
 	collapsed?: boolean
@@ -12,10 +14,12 @@ export interface SidebarItemProps {
 export const SidebarItem = memo((props: SidebarItemProps) => {
 	const { className, collapsed } = props
 	const { t } = useTranslation()
+	const auth = useSelector(getUserAuthData)
+	// доделать отрисовку сайдбара по аус
 	return (
 		<div className={classNames(cls.SidebarItem, { [cls.collapsed]: collapsed }, [className])}>
 			<div>
-				{SidebarItemsList.map(({ path, text, Icon }) => (
+				{SidebarItemsList.map(({ path, text, Icon, authRequire }) => (
 					<AppLink
 						key={path}
 						to={path}
