@@ -35,6 +35,7 @@ export const profileSlice = createSlice({
 		builder
 			.addCase(fetchProfileData.pending, (state) => {
 				state.error = undefined
+				state.validateError = undefined
 				state.isLoading = true
 			})
 			.addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {

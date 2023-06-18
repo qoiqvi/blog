@@ -16,12 +16,14 @@ type Story = StoryObj<typeof Input>
 export const InputLight: Story = {
 	args: {
 		autofocus: true,
+		placeholder: "Your placeholder",
 	},
 }
 
 export const InputDark: Story = {
 	args: {
 		autofocus: true,
+		placeholder: "Your placeholder",
 	},
 	decorators: [ThemeDecorator(Theme.DARK)],
 }

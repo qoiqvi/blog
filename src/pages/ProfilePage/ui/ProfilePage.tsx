@@ -18,7 +18,6 @@ import type { Currency } from "entities/Currency"
 import type { Country } from "entities/Country"
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader"
 import { Text, TextTheme } from "shared/ui/Text"
-import { TextAlingn } from "shared/ui/Text/ui/Text"
 
 export interface ProfilePageProps {
 	className?: string
@@ -37,8 +36,11 @@ const ProfilePage = memo((props: ProfilePageProps) => {
 	const validateError = useSelector(getProfileValidateErrors)
 	const dispatch = useAppDispatch()
 	console.log(formData)
+
 	useEffect(() => {
-		dispatch(fetchProfileData())
+		if (_PROJECT_ !== "storybook") {
+			dispatch(fetchProfileData())
+		}
 	}, [dispatch])
 
 	const onChangeFirstname = useCallback(

@@ -1,4 +1,3 @@
-/* eslint-disable i18next/no-literal-string */
 import type { Meta, StoryObj } from "@storybook/react"
 
 import LoginForm from "./LoginForm"
@@ -16,10 +15,10 @@ type Story = StoryObj<typeof LoginForm>
 
 export const Light: Story = {
 	args: {},
-	decorators: [StoreDecorator({})],
+	decorators: [StoreDecorator({ loginForm: { isLoading: true } })],
 }
 
-export const Dark: Story = {
+export const DarkWithError: Story = {
 	args: {},
-	decorators: [ThemeDecorator(Theme.DARK), StoreDecorator({})],
+	decorators: [ThemeDecorator(Theme.DARK), StoreDecorator({ loginForm: { username: "213", password: "21333" } })],
 }

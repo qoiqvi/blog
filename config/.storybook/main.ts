@@ -25,8 +25,9 @@ const config: StorybookConfig = {
 		config.module?.rules?.push(buildCssLoaders(true))
 		config.plugins?.push(
 			new DefinePlugin({
-				_IS_DEV_: true,
-				_API_URL_: "",
+				_IS_DEV_: JSON.stringify(true),
+				_API_URL_: JSON.stringify(""),
+				_PROJECT_: JSON.stringify("storybook"),
 			})
 		)
 		return config
