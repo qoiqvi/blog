@@ -1,6 +1,7 @@
 import MainIcon from "shared/assets/icons/Vector.svg"
 import AboutIcon from "shared/assets/icons/clarity_list-outline-badged.svg"
 import ProfileIcon from "shared/assets/icons/ProfileIcon.svg"
+import PostIcon from "shared/assets/icons/PostIcon.svg"
 
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 
@@ -28,6 +29,12 @@ export const SidebarItemsList: SidebarItemType[] = [
 		path: RoutePath.profile,
 		text: "Профиль",
 		Icon: ProfileIcon,
+		authRequire: true,
+	},
+	{
+		path: RoutePath.articles,
+		text: "Статьи",
+		Icon: PostIcon,
 		authRequire: true,
 	},
 ]

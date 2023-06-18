@@ -20,22 +20,7 @@ const AppRouter = () => {
 			/>
 		)
 	}, [])
-	return (
-		<Routes>
-			{Object.values(routeConfig).map(renderWithWrapper)}
-			{/* {Object.values(routeConfig).map(({ element, path }) => (
-				<Route
-					path={path}
-					key={path}
-					element={
-						<Suspense fallback={<PageLoader />}>
-							<div className="page-wrapper">{element}</div>
-						</Suspense>
-					}
-				/>
-			))} */}
-		</Routes>
-	)
+	return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>
 }
 
 export default AppRouter

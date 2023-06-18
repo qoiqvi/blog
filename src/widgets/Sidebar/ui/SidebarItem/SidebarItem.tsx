@@ -6,6 +6,7 @@ import { SidebarItemsList } from "widgets/Sidebar/model/items"
 import { memo } from "react"
 import { useSelector } from "react-redux"
 import { getUserAuthData } from "entities/User"
+
 export interface SidebarItemProps {
 	className?: string
 	collapsed?: boolean
@@ -20,29 +21,7 @@ export const SidebarItem = memo((props: SidebarItemProps) => {
 		<div className={classNames(cls.SidebarItem, { [cls.collapsed]: collapsed }, [className])}>
 			<div>
 				{SidebarItemsList.map(({ path, text, Icon, authRequire }) => {
-					if (authRequire) {
-						if (auth) {
-							return (
-								<AppLink
-									key={path}
-									to={path}
-									className={cls.item}
-									theme={AppLinkTheme.INVERTED_PRIMARY}
-								>
-									{collapsed ? (
-										<Icon className={cls.icon} />
-									) : (
-										<>
-											<Icon className={cls.icon} />
-											<span className={cls.link}>{t(text)}</span>
-										</>
-									)}
-								</AppLink>
-							)
-						}
-						return <></>
-					}
-					return (
+					const Links = (
 						<AppLink
 							key={path}
 							to={path}
@@ -59,6 +38,13 @@ export const SidebarItem = memo((props: SidebarItemProps) => {
 							)}
 						</AppLink>
 					)
+					if (authRequire) {
+						if (auth) {
+							return Links
+						}
+						return <></>
+					}
+					return Links
 				})}
 			</div>
 		</div>
