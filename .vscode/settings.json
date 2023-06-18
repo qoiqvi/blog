@@ -5,5 +5,10 @@
     "i18n-ally.keystyle": "flat",
     "github-actions.workflows.pinned.workflows": [
         ".github/workflows/main.yml"
-    ]
+    ],
+    "editor.fontSize": 14,
+    "editor.cursorStyle": "line",
+    "editor.cursorWidth": 0,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorWidth": 1.2
 }

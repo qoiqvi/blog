@@ -30,6 +30,7 @@
     "./config/jest/jestEmptyComponent.tsx",
     "./config/jest/*.ts",
     "./config/build/*.ts",
-    "./webpack.config.ts"
+    "./webpack.config.ts",
+    "./config/build/loaders/buildBabelLoader.ts"
   ]
 }

@@ -1,5 +1,6 @@
 import { type RuleSetRule } from "webpack"
 import buildCssLoaders from "./loaders/buildCssLoaders"
+import { buildBabelLoader } from "./loaders/buildBabelLoader"
 
 export const buildLoaders = (isDev: boolean): RuleSetRule[] => {
 	const tsLoaders = {
@@ -18,25 +19,7 @@ export const buildLoaders = (isDev: boolean): RuleSetRule[] => {
 		use: ["file-loader"],
 	}
 
-	const babelLoader = {
-		test: /\.(js|jsx|tsx)$/,
-		exclude: /node_modules/,
-		use: {
-			loader: "babel-loader",
-			options: {
-				presets: ["@babel/preset-env"],
-				plugins: [
-					[
-						"i18next-extract",
-						{
-							locales: ["ru", "en"],
-							keyAsDefaultValue: true,
-						},
-					],
-				],
-			},
-		},
-	}
+	const babelLoader = buildBabelLoader(isDev)
 
 	const cssLoaders = buildCssLoaders(isDev)
 
