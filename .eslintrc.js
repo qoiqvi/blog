@@ -54,6 +54,7 @@ module.exports = {
     "@typescript-eslint/no-misused-promises": 0,
     "@typescript-eslint/no-invalid-void-type": 0,
     "promise/param-names": 0,
-    "@typescript-eslint/no-floating-promises": 0
+    "@typescript-eslint/no-floating-promises": 0,
+    "@typescript-eslint/restrict-template-expressions": 0
   }
 }
