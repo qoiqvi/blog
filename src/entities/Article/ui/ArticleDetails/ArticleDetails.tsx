@@ -23,6 +23,7 @@ import { ArticleBlock, ArticleBlockType } from "../../model/types/article"
 import { ArticleCodeBlockComponent } from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent"
 import { ArticleImageBlockComponent } from "../ArticleImageBlockComponent/ArticleImageBlockComponent"
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent"
+import { IconType } from "shared/ui/Icon/ui/Icon"
 
 export interface ArticleDetailsProps {
 	className?: string
@@ -133,11 +134,17 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 					<Text text={article?.subtitle} />
 				</div>
 				<div className={cls.articleDetails}>
-					<Icon Svg={EyeIcon} />
+					<Icon
+						type={IconType.STROKE}
+						Svg={EyeIcon}
+					/>
 					<span>{article?.views}</span>
 				</div>
 				<div className={cls.articleDetails}>
-					<Icon Svg={CalendarIcon} />
+					<Icon
+						Svg={CalendarIcon}
+						type={IconType.STROKE}
+					/>
 					<span>{article?.createdAt}</span>
 				</div>
 				{article?.blocks.map(renderBlock)}
