@@ -1,5 +1,5 @@
 .Sidebar {
-	height: calc(100vh - var(--nav-bar-height));
+	height: calc(100vh - var(--navbar-height));
 	width: var(--sidebar-width);
 	position: relative;
 	background: var(--inverted-bg-color);
@@ -13,7 +13,7 @@
 	justify-content: center;
 	width: 100%;
 	color: var(--primary-color);
-	color: aqua;
+	// color: aqua;
 }
 
 .lang {

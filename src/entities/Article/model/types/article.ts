@@ -1,5 +1,5 @@
 export interface Article {
-	id?: string
+	id: string
 	title: string
 	subtitle: string
 	img: string
@@ -30,14 +30,17 @@ export enum ArticleBlockType {
 
 export interface ArticleCodeBlock extends ArticleBlockBase {
 	code: string
+	type: ArticleBlockType.CODE
 }
 
 export interface ArticleTextBlock extends ArticleBlockBase {
-	title: string
+	title?: string
 	paragraphs: string[]
+	type: ArticleBlockType.TEXT
 }
 
 export interface ArticleImageBlock extends ArticleBlockBase {
 	src: string
 	title: string
+	type: ArticleBlockType.IMAGE
 }

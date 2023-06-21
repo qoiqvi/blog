@@ -10,11 +10,11 @@ import { StoreProvider } from "App/provider/StoreProvider"
 render(
 	<BrowserRouter>
 		<StoreProvider>
-			<ErrorBoundary>
-				<ThemeProvider>
+			<ThemeProvider>
+				<ErrorBoundary>
 					<App />
-				</ThemeProvider>
-			</ErrorBoundary>
+				</ErrorBoundary>
+			</ThemeProvider>
 		</StoreProvider>
 	</BrowserRouter>,
 	document.getElementById("root")

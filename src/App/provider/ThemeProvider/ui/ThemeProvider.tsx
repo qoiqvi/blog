@@ -6,11 +6,14 @@ interface ThemeProviderProps {
 	children: ReactNode
 }
 
-const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT
+// получает тему из локал стора но все равно применяет лайт в качестве дефолтной
 
 const ThemeProvider: FC<ThemeProviderProps> = (props) => {
 	const { initialTheme, children } = props
-	const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme)
+	const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT
+	// const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme)
+	const [theme, setTheme] = useState<Theme>(defaultTheme)
+	console.log("-------------------------------" + defaultTheme, theme)
 	const defaultProps = useMemo(
 		() => ({
 			theme,

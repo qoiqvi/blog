@@ -5,7 +5,7 @@ import { ThemeDecorator } from "shared/config/storybook/themeDecorator"
 import { Theme } from "App/provider/ThemeProvider"
 
 const meta = {
-	title: "widget/Modal",
+	title: "shared/Modal",
 	component: Modal,
 	args: {
 		children:
