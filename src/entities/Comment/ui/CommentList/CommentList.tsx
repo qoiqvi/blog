@@ -19,7 +19,7 @@ export const CommentList = (props: CommentListProps) => {
 			{comments?.length ? (
 				comments.map((comment, index) => (
 					<CommentCard
-						// isLoading={isLoading}
+						isLoading={isLoading}
 						className={cls.comment}
 						key={index}
 						comment={comment}

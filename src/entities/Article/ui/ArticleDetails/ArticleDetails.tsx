@@ -24,6 +24,7 @@ import { ArticleCodeBlockComponent } from "../ArticleCodeBlockComponent/ArticleC
 import { ArticleImageBlockComponent } from "../ArticleImageBlockComponent/ArticleImageBlockComponent"
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent"
 import { IconType } from "shared/ui/Icon/ui/Icon"
+import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect"
 
 export interface ArticleDetailsProps {
 	className?: string
@@ -41,11 +42,10 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 	const isLoading = useSelector(getArticleDetailsIsLoading)
 	const article = useSelector(getArticleDetailsData)
 	const error = useSelector(getArticleDetailsError)
-	useEffect(() => {
-		if (_PROJECT_ !== "storybook") {
-			dispatch(fetchArticleById(id))
-		}
-	}, [dispatch, id])
+
+	useInitialEffect(() => {
+		dispatch(fetchArticleById(id))
+	})
 
 	const renderBlock = useCallback((block: ArticleBlock) => {
 		switch (block.type) {
