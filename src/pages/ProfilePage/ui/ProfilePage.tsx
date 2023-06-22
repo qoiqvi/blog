@@ -18,6 +18,8 @@ import type { Currency } from "entities/Currency"
 import type { Country } from "entities/Country"
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader"
 import { Text, TextTheme } from "shared/ui/Text"
+import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect"
+import { useParams } from "react-router-dom"
 
 export interface ProfilePageProps {
 	className?: string
@@ -35,14 +37,11 @@ const ProfilePage = memo((props: ProfilePageProps) => {
 	const readonly = useSelector(getProfileReadonly)
 	const validateError = useSelector(getProfileValidateErrors)
 	const dispatch = useAppDispatch()
-	console.log(formData)
+	const { id } = useParams<{ id: string }>()
 
-	useEffect(() => {
-		if (_PROJECT_ !== "storybook") {
-			dispatch(fetchProfileData())
-		}
-	}, [dispatch])
-
+	useInitialEffect(() => {
+		dispatch(fetchProfileData(id))
+	})
 	const onChangeFirstname = useCallback(
 		(value?: string) => {
 			dispatch(profileSliceActions.updateProfileFormData({ first: value }))

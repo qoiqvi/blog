@@ -5,8 +5,8 @@ import { ArticleDetails } from "entities/Article"
 import { useParams } from "react-router-dom"
 import { Text } from "shared/ui/Text"
 import { CommentList } from "entities/Comment"
-import { memo } from "react"
-import { DynamicModuleLoader } from "shared/lib/components/DynamicModuleLoader"
+import { memo, useCallback } from "react"
+import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
 import { articleDetailsCommentsReducer, getArticleComments } from "../../model/slice/articleDetailsCommentsSlice"
 import { useSelector } from "react-redux"
 import {
@@ -16,6 +16,8 @@ import {
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
 import { fetchCommentsByArticleId } from "pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId"
+import { AddNewComment } from "features/AddNewComment"
+import { sendArticleComment } from "pages/ArticleDetailsPage/model/services/sendArticleComment/sendArticleComment"
 
 export interface ArticleDetailsPageProps {
 	className?: string
@@ -34,17 +36,24 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 		dispatch(fetchCommentsByArticleId(id))
 	})
 
+	const reducers: ReducersList = {
+		articleDetailsComments: articleDetailsCommentsReducer,
+	}
+
+	const onSendComment = useCallback(
+		(text: string) => {
+			dispatch(sendArticleComment(text))
+		},
+		[dispatch]
+	)
+
 	if (!id) {
 		return <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</div>
 	}
 
-	const ReducersList = {
-		articleDetailsComments: articleDetailsCommentsReducer,
-	}
-
 	return (
 		<DynamicModuleLoader
-			reducers={ReducersList}
+			reducers={reducers}
 			removeAfterUnmount
 		>
 			<div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
@@ -53,6 +62,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 					className={cls.commentTitle}
 					title={t("Comments")}
 				/>
+				<AddNewComment onSendComment={onSendComment} />
 				<CommentList
 					isLoading={commentsIsLoading}
 					comments={comments}

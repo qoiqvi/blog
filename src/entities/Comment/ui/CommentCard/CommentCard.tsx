@@ -5,6 +5,9 @@ import { Comment } from "../../model/types/comment"
 import { Avatar } from "shared/ui/Avatar"
 import { Text } from "shared/ui/Text"
 import { Skeleton } from "shared/ui/Skeleton"
+import { AppLink } from "shared/ui/AppLink"
+import { useNavigate } from "react-router-dom"
+import { RoutePath } from "shared/config/routeConfig/routeConfig"
 
 export interface CommentCardProps {
 	className?: string
@@ -15,6 +18,7 @@ export interface CommentCardProps {
 export const CommentCard = (props: CommentCardProps) => {
 	const { className, comment, isLoading } = props
 	const { t } = useTranslation()
+	const navigate = useNavigate()
 
 	if (isLoading) {
 		return (
@@ -40,7 +44,10 @@ export const CommentCard = (props: CommentCardProps) => {
 	}
 	return (
 		<div className={classNames(cls.CommentCard, {}, [className])}>
-			<div className={cls.header}>
+			<AppLink
+				to={`${RoutePath.profile}${comment?.user.id}`}
+				className={cls.header}
+			>
 				{comment?.user.avatar && (
 					<Avatar
 						size={30}
@@ -51,7 +58,7 @@ export const CommentCard = (props: CommentCardProps) => {
 					className={cls.username}
 					title={comment?.user.username}
 				/>
-			</div>
+			</AppLink>
 			<div>
 				<Text text={comment?.text} />
 			</div>

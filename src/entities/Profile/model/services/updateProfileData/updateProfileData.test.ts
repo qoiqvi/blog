@@ -22,7 +22,7 @@ describe("updateProfileData.test", () => {
 			},
 		})
 		thunk.api.put.mockReturnValue(Promise.resolve({ data }))
-		const result = await thunk.callThunk()
+		const result = await thunk.callThunk("1")
 
 		expect(thunk.api.put).toBeCalled()
 		expect(result.meta.requestStatus).toBe("fulfilled")
@@ -35,7 +35,7 @@ describe("updateProfileData.test", () => {
 			profile: { form: data },
 		})
 		thunk.api.put.mockReturnValue(Promise.resolve({ status: 403 }))
-		const result = await thunk.callThunk()
+		const result = await thunk.callThunk("1")
 
 		expect(result.payload).toEqual([ValidateProfileError.NO_DATA])
 		expect(result.meta.requestStatus).toBe("rejected")
@@ -45,7 +45,7 @@ describe("updateProfileData.test", () => {
 			// @ts-expect-error dsadsaa
 			profile: { form: { ...data, username: "" } },
 		})
-		const result = await thunk.callThunk()
+		const result = await thunk.callThunk("1")
 
 		expect(result.payload).toEqual([ValidateProfileError.INCORECT_USERNAME])
 		expect(result.meta.requestStatus).toBe("rejected")

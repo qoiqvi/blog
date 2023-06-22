@@ -24,7 +24,6 @@ export interface InputProps extends HTMLInputProps {
 export const Input = memo((props: InputProps) => {
 	const { className, autofocus, value, onChange, type = "text", placeholder, readonly = false, ...otherProps } = props
 	const [focus, setFocus] = useState(false)
-	console.log(value)
 	const [caretPosition, setCaretPosition] = useState(0)
 	const ref = useRef() as MutableRefObject<HTMLInputElement>
 	const onFocus = () => {
