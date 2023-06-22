@@ -1,4 +1,5 @@
-/build
+build
 node_modules
-/.vscode
-/storybook-static
+.vscode
+storybook-static
+.loki
