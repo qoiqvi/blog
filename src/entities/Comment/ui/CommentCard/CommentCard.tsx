@@ -22,7 +22,7 @@ export const CommentCard = (props: CommentCardProps) => {
 
 	if (isLoading) {
 		return (
-			<div className={classNames(cls.CommentCard, {}, [className])}>
+			<div className={classNames(cls.CommentCard, {}, [className, cls.loading])}>
 				<div className={cls.header}>
 					<Skeleton
 						width={30}

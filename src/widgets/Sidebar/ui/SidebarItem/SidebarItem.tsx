@@ -2,10 +2,10 @@ import { classNames } from "shared/lib/classNames/className"
 import cls from "./SidebarItem.module.scss"
 import { useTranslation } from "react-i18next"
 import { AppLink, AppLinkTheme } from "shared/ui/AppLink"
-import { SidebarItemsList } from "widgets/Sidebar/model/items"
 import { memo } from "react"
 import { useSelector } from "react-redux"
 import { getUserAuthData } from "entities/User"
+import { getSidebarItems } from "widgets/Sidebar/model/selectors/getSidebarItems"
 
 export interface SidebarItemProps {
 	className?: string
@@ -16,6 +16,7 @@ export const SidebarItem = memo((props: SidebarItemProps) => {
 	const { className, collapsed } = props
 	const { t } = useTranslation()
 	const auth = useSelector(getUserAuthData)
+	const SidebarItemsList = useSelector(getSidebarItems)
 
 	return (
 		<div className={classNames(cls.SidebarItem, { [cls.collapsed]: collapsed }, [className])}>

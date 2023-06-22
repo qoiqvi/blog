@@ -44,3 +44,8 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 	title: string
 	type: ArticleBlockType.IMAGE
 }
+
+export enum ArticleView {
+	LIST = "LIST",
+	DETAIL = "DETAIL",
+}
