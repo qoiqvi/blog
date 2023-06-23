@@ -1,12 +1,13 @@
 {
-	"Язык": "English",
-	"Страница не найдена": "Page not found",
-	"Главная": "Main",
-	"О странице": "About",
-	"Обновить страницу": "Refresh page",
-	"TOGGLE": "Toggle",
-	"Короткий язык": "En",
-	"There are no comments yet": "No comments yet",
-	"Comment": "A comment",
-	"Add comment": "Add comment"
+  "Язык": "English",
+  "Страница не найдена": "Page not found",
+  "Главная": "Main",
+  "О странице": "About",
+  "Обновить страницу": "Refresh page",
+  "TOGGLE": "Toggle",
+  "Короткий язык": "En",
+  "There are no comments yet": "No comments yet",
+  "Comment": "A comment",
+  "Add comment": "Add comment",
+  "All articles": "All articles"
 }

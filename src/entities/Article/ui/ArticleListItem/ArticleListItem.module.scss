@@ -1,8 +1,22 @@
 .ArticleListItem {
 }
 
-.DETAIL {
+.LIST {
 	width: 230px;
+
+	transition: 0.3s;
+
+	&:hover {
+		transform: scale(1.01);
+		opacity: 0.8;
+
+		.date {
+			display: block;
+		}
+		.card {
+			cursor: pointer;
+		}
+	}
 	.imageWrapper {
 		width: 200px;
 		height: 200px;
@@ -16,6 +30,7 @@
 		position: absolute;
 		right: 0;
 		top: 0;
+		display: none;
 	}
 	.infoWrapper {
 		display: flex;
@@ -38,30 +53,45 @@
 		width: 200px;
 	}
 }
-.LIST {
+.DETAIL {
 	.card {
+		width: 100%;
 	}
-	.imageWrapper {
+	.header {
+		display: flex;
+		align-items: center;
 	}
-	.img {
+	.avatar {
+		margin-right: 5px;
 	}
 	.date {
+		margin-left: auto;
 	}
-	.infoWrapper {
+
+	.imageWrapper {
+		height: 400px;
+		width: 400px;
+		// position: relative;
+	}
+	.img {
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
+		margin: 16px;
+	}
+	.text {
+		max-height: 200px;
+		overflow-y: hidden;
+	}
+	.footer {
+		display: flex;
+		align-items: center;
+		margin-top: 10px;
 	}
 	.types {
+		margin-bottom: 8px;
 	}
 	.views {
-	}
-	.title {
+		margin-left: auto;
 	}
 }
-
-// card
-// imageWrapper
-// img
-// date
-// infoWrapper
-// types
-// views
-// title

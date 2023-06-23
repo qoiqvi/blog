@@ -12,6 +12,11 @@ const article = {
 	id: "1",
 	title: "Javascript news",
 	subtitle: "Что нового в JS за 2022 год?",
+	user: {
+		id: "1",
+		username: "dima",
+		avatar: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/143.png",
+	},
 	img: "https://teknotower.com/wp-content/uploads/2020/11/js.png",
 	views: 1022,
 	createdAt: "26.02.2022",

@@ -7,12 +7,15 @@ import { Text } from "shared/ui/Text"
 
 export interface ArticleTextBlockComponentProps {
 	className?: string
-	block: ArticleTextBlock
+	block?: ArticleTextBlock
 }
 
 export const ArticleTextBlockComponent = memo((props: ArticleTextBlockComponentProps) => {
 	const { className, block } = props
 	const { t } = useTranslation()
+	if (!block) {
+		return null
+	}
 	return (
 		<div className={classNames(cls.ArticleTextBlockComponent, {}, [className])}>
 			{block.title && (

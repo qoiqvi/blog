@@ -2,7 +2,7 @@ import { classNames } from "shared/lib/classNames/className"
 import cls from "./ArticleDetailsPage.module.scss"
 import { useTranslation } from "react-i18next"
 import { ArticleDetails } from "entities/Article"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Text } from "shared/ui/Text"
 import { CommentList } from "entities/Comment"
 import { memo, useCallback } from "react"
@@ -15,9 +15,11 @@ import {
 } from "../../model/selectors/comments"
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
-import { fetchCommentsByArticleId } from "pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId"
+import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId"
 import { AddNewComment } from "features/AddNewComment"
-import { sendArticleComment } from "pages/ArticleDetailsPage/model/services/sendArticleComment/sendArticleComment"
+import { sendArticleComment } from "../../model/services/sendArticleComment/sendArticleComment"
+import { AppButton, ButtonTheme } from "shared/ui/AppButton"
+import { RoutePath } from "shared/config/routeConfig/routeConfig"
 
 export interface ArticleDetailsPageProps {
 	className?: string
@@ -31,6 +33,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 	const error = useSelector(getArticleDetailsPageCommentErorr)
 	const commentsIsLoading = useSelector(getArticleDetailsPageCommentIsLoading)
 	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 
 	useInitialEffect(() => {
 		dispatch(fetchCommentsByArticleId(id))
@@ -46,6 +49,9 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 		},
 		[dispatch]
 	)
+	const onBackToArticles = useCallback(() => {
+		navigate(RoutePath.articles)
+	}, [navigate])
 
 	if (!id) {
 		return <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</div>
@@ -61,6 +67,12 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 			removeAfterUnmount
 		>
 			<div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+				<AppButton
+					onClick={onBackToArticles}
+					theme={ButtonTheme.OUTLINED}
+				>
+					{t("All articles")}
+				</AppButton>
 				<ArticleDetails id={id} />
 				<Text
 					className={cls.commentTitle}
