@@ -6,6 +6,7 @@ import { Article, ArticleView } from "entities/Article/model/types/article"
 import { Text } from "shared/ui/Text"
 import { Icon } from "shared/ui/Icon"
 import EyeIcon from "shared/assets/icons/EyeIcon.svg"
+import { IconType } from "shared/ui/Icon/ui/Icon"
 
 export interface ArticleListItemProps {
 	className?: string
@@ -48,7 +49,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 						text={String(article.views)}
 						className={cls.views}
 					/>
-					<Icon Svg={EyeIcon} />
+					<Icon
+						Svg={EyeIcon}
+						type={IconType.STROKE}
+					/>
 				</div>
 				<Text
 					text={article.title}

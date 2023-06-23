@@ -11,7 +11,7 @@ export interface SidebarProps {
 	className?: string
 }
 
-export const Sidebar: FC<SidebarProps> = ({ className }) => {
+export const Sidebar = ({ className }: SidebarProps) => {
 	const [collapsed, setCollaped] = useState<boolean>(true)
 	const onToggle = () => {
 		setCollaped(!collapsed)

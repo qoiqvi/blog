@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Text } from "./Text"
 import { ThemeDecorator } from "shared/config/storybook/themeDecorator"
 import { Theme } from "App/provider/ThemeProvider"
 
 const meta = {
-	title: "widget/Text",
+	title: "shared/Text",
 	component: Text,
 	args: {},
 } satisfies Meta<typeof Text>

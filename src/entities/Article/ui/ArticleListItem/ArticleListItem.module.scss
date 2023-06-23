@@ -2,23 +2,40 @@
 }
 
 .DETAIL {
-	.card {
-		padding: 15px;
-		border-radius: 12px;
-	}
+	width: 230px;
 	.imageWrapper {
+		width: 200px;
+		height: 200px;
+		position: relative;
 	}
 	.img {
+		width: 200px;
+		height: 200px;
 	}
 	.date {
+		position: absolute;
+		right: 0;
+		top: 0;
 	}
 	.infoWrapper {
+		display: flex;
+		align-items: center;
+		margin-top: 8px;
 	}
-	.types {
+
+	.types p {
+		width: 115px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.views {
+		margin-left: auto;
+		margin-right: 8px;
 	}
-	.title {
+	.title p {
+		margin-top: 8px;
+		width: 200px;
 	}
 }
 .LIST {

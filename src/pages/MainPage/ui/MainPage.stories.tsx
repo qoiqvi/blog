@@ -15,7 +15,7 @@ type Story = StoryObj<typeof MainPage>
 
 export const Light: Story = {
 	args: {},
-	// decorators: [StoreDecorator({})],
+	decorators: [StoreDecorator({})],
 }
 
 export const Dark: Story = {

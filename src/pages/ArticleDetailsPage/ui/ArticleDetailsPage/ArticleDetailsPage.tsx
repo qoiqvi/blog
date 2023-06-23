@@ -51,6 +51,10 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 		return <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</div>
 	}
 
+	if (error) {
+		return <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</div>
+	}
+
 	return (
 		<DynamicModuleLoader
 			reducers={reducers}
