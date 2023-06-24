@@ -4,20 +4,23 @@ import type { ArticleDetailsSchema } from "entities/Article"
 import type { CounterSchema } from "entities/Counter"
 import type { ProfileSchema } from "entities/Profile"
 import type { UserSchema } from "entities/User"
-import { addNewCommentSchema } from "features/AddNewComment"
+import type { addNewCommentSchema } from "features/AddNewComment"
 import type { LoginSchema } from "features/AuthByUserName"
 import type { ArticleDetailsCommentsSchema } from "pages/ArticleDetailsPage"
+import type { ArticlesPageSchema } from "pages/ArticlesPage"
 import type { To, NavigateOptions } from "react-router-dom"
 
 export interface StateSchema {
 	counter: CounterSchema
 	user: UserSchema
 
+	//	async Reducers
 	loginForm?: LoginSchema
 	profile?: ProfileSchema
 	articleDetails?: ArticleDetailsSchema
 	articleDetailsComments?: ArticleDetailsCommentsSchema
 	addNewComment?: addNewCommentSchema
+	articlesPage?: ArticlesPageSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

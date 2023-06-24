@@ -5,6 +5,7 @@ export interface IconProps {
 	className?: string
 	Svg: React.VFC<React.SVGProps<SVGSVGElement>>
 	type?: IconType
+	func?: (arg?: any) => void
 }
 
 export enum IconType {
@@ -13,10 +14,15 @@ export enum IconType {
 }
 
 export const Icon = (props: IconProps) => {
-	const { className, Svg, type = IconType.FILL } = props
+	const { className, Svg, type = IconType.FILL, func } = props
 	const mods = {
 		[cls.fill]: type === IconType.FILL,
 		[cls.stroke]: type === IconType.STROKE,
 	}
-	return <Svg className={classNames(cls.Icon, mods, [className])} />
+	return (
+		<Svg
+			className={classNames(cls.Icon, mods, [className])}
+			onClick={func}
+		/>
+	)
 }

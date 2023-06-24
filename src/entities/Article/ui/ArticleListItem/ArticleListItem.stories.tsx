@@ -63,8 +63,3 @@ export const Dark: Story = {
 	args: { view: ArticleView.LIST },
 	decorators: [ThemeDecorator(Theme.DARK)],
 }
-
-export const List: Story = {
-	args: { isLoading: true },
-	decorators: [ThemeDecorator(Theme.LIGHT_GREEN)],
-}

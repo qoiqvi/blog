@@ -18,12 +18,11 @@ import { ArticleListItemSkeleton } from "./ArticleListItemSkeleton"
 export interface ArticleListItemProps {
 	className?: string
 	article: Article
-	isLoading: boolean
 	view: ArticleView
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-	const { className, article, view, isLoading = true } = props
+	const { className, article, view } = props
 	const { t } = useTranslation()
 	const navigate = useNavigate()
 
