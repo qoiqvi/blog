@@ -9,10 +9,18 @@ import { ArticleListItemSkeleton } from "../ArticleListItem/ArticleListItemSkele
 export interface ArticleListProps {
 	className?: string
 	articles: Article[]
-	// error?: string
 	isLoading?: boolean
 	view: ArticleView
 }
+
+const getSkeletons = (view: ArticleView) =>
+	new Array(view === ArticleView.DETAIL ? 3 : 9).fill(0).map((i, index) => (
+		<ArticleListItemSkeleton
+			key={index}
+			view={view}
+			className={cls.card}
+		/>
+	))
 
 export const ArticleList = memo((props: ArticleListProps) => {
 	const { className, articles, isLoading, view } = props
@@ -27,43 +35,10 @@ export const ArticleList = memo((props: ArticleListProps) => {
 		/>
 	)
 
-	// if (error) {
-	// 	return <h1>{error}</h1>
-	// }
-
-	if (isLoading) {
-		return (
-			<div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-				{articles.map((article, ind) => (
-					<ArticleListItemSkeleton
-						view={view}
-						key={ind}
-						className={cls.card}
-					/>
-				))}
-			</div>
-		)
-	}
-
 	return (
 		<div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-			{articles.length > 0 ? (
-				articles.map(renderArticles)
-			) : (
-				<>
-					<div>Посты</div>
-				</>
-			)}
+			{articles.length > 0 ? articles.map(renderArticles) : null}
+			{isLoading && getSkeletons(view)}
 		</div>
 	)
 })
-
-// const mockedArr = () => {
-// 	return new Array(9).fill(0).map((elem, ind) => (
-// 		<ArticleListItemSkeleton
-// 			view={view}
-// 			key={ind}
-// 			className={cls.card}
-// 		/>
-// 	))
-// }

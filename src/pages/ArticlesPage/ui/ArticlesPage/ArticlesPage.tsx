@@ -13,7 +13,7 @@ import {
 	getArticlesListIsLoading,
 	getArticlesListView,
 } from "../../model/selectors/articlesPageSelectors"
-import { useCallback } from "react"
+import { memo, useCallback } from "react"
 import { ArticlePageViewSelector } from "../ArticlePageViewSelector/ArticlePageViewSelector"
 
 export interface ArticlesPageProps {
@@ -34,16 +34,19 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	const articles = useSelector(getArticles.selectAll)
 
 	useInitialEffect(() => {
-		dispatch(fetchArticlesList())
+		dispatch(fetchArticlesList({ page: 1 }))
+		dispatch(ArticlesPageSliceActions.initState())
 	})
 
 	const onChangeView = useCallback(
 		(view: ArticleView) => {
-			dispatch(ArticlesPageSliceActions.initState())
 			dispatch(ArticlesPageSliceActions.setView(view))
 		},
 		[dispatch]
 	)
+
+	// стили вешаются раньше, чем происходит загрузка
+	// нужен номральный лоадинг реализовать.
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
@@ -63,4 +66,4 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	)
 }
 
-export default ArticlesPage
+export default memo(ArticlesPage)
