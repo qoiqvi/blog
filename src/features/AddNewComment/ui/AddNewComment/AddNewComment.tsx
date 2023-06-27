@@ -44,6 +44,7 @@ const AddNewComment = memo((props: AddNewCommentProps) => {
 				<Input
 					className={cls.input}
 					value={text}
+					autoFocus={true}
 					onChange={onCommentTextChange}
 					placeholder={t("Comment")}
 				/>

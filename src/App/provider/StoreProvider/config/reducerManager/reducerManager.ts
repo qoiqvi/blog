@@ -3,6 +3,7 @@ import type { MountedReducers, StateSchema, StateSchemaKey, reducerManager } fro
 
 export function createReducerManager(initialReducers: ReducersMapObject<StateSchema>): reducerManager {
 	const reducers = { ...initialReducers }
+
 	let combinedReducer = combineReducers(reducers)
 
 	let keysToRemove: StateSchemaKey[] = []

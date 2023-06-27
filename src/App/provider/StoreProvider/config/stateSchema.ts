@@ -8,10 +8,12 @@ import type { addNewCommentSchema } from "features/AddNewComment"
 import type { LoginSchema } from "features/AuthByUserName"
 import type { ArticleDetailsCommentsSchema } from "pages/ArticleDetailsPage"
 import type { ArticlesPageSchema } from "pages/ArticlesPage"
+import type { SaveScrollSchema } from "widgets/Page"
 
 export interface StateSchema {
 	counter: CounterSchema
 	user: UserSchema
+	saveScroll: SaveScrollSchema
 
 	//	async Reducers
 	loginForm?: LoginSchema

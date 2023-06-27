@@ -4,12 +4,14 @@ import { counterReducer } from "entities/Counter"
 import { UserSliceReducer } from "entities/User"
 import { createReducerManager } from "./reducerManager/reducerManager"
 import { $api } from "shared/api/api"
+import { SaveScrollSliceReducer } from "widgets/Page"
 
 export function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
 	const rootReducers: ReducersMapObject<StateSchema> = {
 		...asyncReducers,
 		counter: counterReducer,
 		user: UserSliceReducer,
+		saveScroll: SaveScrollSliceReducer,
 	}
 	const reducerManager = createReducerManager(rootReducers)
 

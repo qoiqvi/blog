@@ -1,6 +1,6 @@
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
-import { Page } from "shared/ui/Page"
+import { Page } from "widgets/Page"
 import { BugButton } from "widgets/PageError"
 
 const MainPage = memo(() => {

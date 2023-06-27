@@ -20,7 +20,7 @@ import { AddNewComment } from "features/AddNewComment"
 import { sendArticleComment } from "../../model/services/sendArticleComment/sendArticleComment"
 import { AppButton, ButtonTheme } from "shared/ui/AppButton"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
-import { Page } from "shared/ui/Page"
+import { Page } from "widgets/Page"
 
 export interface ArticleDetailsPageProps {
 	className?: string
