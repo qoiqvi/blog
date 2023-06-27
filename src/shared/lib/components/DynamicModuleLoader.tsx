@@ -19,16 +19,22 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
 	const { children, reducers, removeAfterUnmount = true } = props
 	const dispatch = useAppDispatch()
 	const store = useStore() as ReduxStoreWithManager
+
 	useEffect(() => {
+		const mountedReducers = store.reducerManager.getMountedReducers()
+
 		Object.entries(reducers).forEach(([name, reducer]) => {
-			store.reducerManager.add(name as StateSchemaKey, reducer)
-			dispatch({ type: `@INIT ${name as StateSchemaKey} reducer` })
+			const mounted = mountedReducers[name as StateSchemaKey]
+			if (!mounted) {
+				store.reducerManager.add(name as StateSchemaKey, reducer)
+				dispatch({ type: `@INIT ${name} reducer` })
+			}
 		})
 		return () => {
 			if (removeAfterUnmount) {
 				Object.entries(reducers).forEach(([name, reducer]) => {
-					dispatch({ type: `@DESTROY ${name as StateSchemaKey} reducer` })
 					store.reducerManager.remove(name as StateSchemaKey)
+					dispatch({ type: `@DESTROY ${name as StateSchemaKey} reducer` })
 				})
 			}
 		}
