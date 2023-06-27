@@ -15,6 +15,8 @@ import {
 } from "../../model/selectors/articlesPageSelectors"
 import { memo, useCallback } from "react"
 import { ArticlePageViewSelector } from "../ArticlePageViewSelector/ArticlePageViewSelector"
+import { Page } from "shared/ui/Page"
+import { fetchNextArticles } from "pages/ArticlesPage/model/services/fetchNextArticles/fetchNextArticles"
 
 export interface ArticlesPageProps {
 	className?: string
@@ -33,9 +35,14 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	const view = useSelector(getArticlesListView)
 	const articles = useSelector(getArticles.selectAll)
 
+	const onLoadNextPart = useCallback(() => {
+		console.log("loading")
+		dispatch(fetchNextArticles())
+	}, [dispatch])
+
 	useInitialEffect(() => {
-		dispatch(fetchArticlesList({ page: 1 }))
 		dispatch(ArticlesPageSliceActions.initState())
+		dispatch(fetchArticlesList({ page: 1 }))
 	})
 
 	const onChangeView = useCallback(
@@ -45,12 +52,12 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 		[dispatch]
 	)
 
-	// стили вешаются раньше, чем происходит загрузка
-	// нужен номральный лоадинг реализовать.
-
 	return (
 		<DynamicModuleLoader reducers={reducers}>
-			<div className={classNames(cls.ArticlesPage, {}, [className])}>
+			<Page
+				onScrollEnd={onLoadNextPart}
+				className={classNames(cls.ArticlesPage, {}, [className])}
+			>
 				<ArticlePageViewSelector
 					view={view}
 					changeView={onChangeView}
@@ -61,7 +68,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 					isLoading={isLoading}
 					articles={articles}
 				/>
-			</div>
+			</Page>
 		</DynamicModuleLoader>
 	)
 }

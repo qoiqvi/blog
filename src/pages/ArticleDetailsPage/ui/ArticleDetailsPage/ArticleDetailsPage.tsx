@@ -20,6 +20,7 @@ import { AddNewComment } from "features/AddNewComment"
 import { sendArticleComment } from "../../model/services/sendArticleComment/sendArticleComment"
 import { AppButton, ButtonTheme } from "shared/ui/AppButton"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
+import { Page } from "shared/ui/Page"
 
 export interface ArticleDetailsPageProps {
 	className?: string
@@ -54,11 +55,11 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 	}, [navigate])
 
 	if (!id) {
-		return <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</div>
+		return <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</Page>
 	}
 
 	if (error) {
-		return <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</div>
+		return <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</Page>
 	}
 
 	return (
@@ -66,7 +67,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 			reducers={reducers}
 			removeAfterUnmount
 		>
-			<div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+			<Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
 				<AppButton
 					onClick={onBackToArticles}
 					theme={ButtonTheme.OUTLINED}
@@ -83,7 +84,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 					isLoading={commentsIsLoading}
 					comments={comments}
 				/>
-			</div>
+			</Page>
 		</DynamicModuleLoader>
 	)
 }

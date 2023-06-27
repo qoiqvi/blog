@@ -5,7 +5,6 @@ import { getArticlesListLimit } from "../../selectors/articlesPageSelectors"
 
 interface FetchArticlesListProps {
 	page: number
-	// limit: number
 }
 
 export const fetchArticlesList = createAsyncThunk<Article[], FetchArticlesListProps, ThunkConfig<string>>(
@@ -17,8 +16,8 @@ export const fetchArticlesList = createAsyncThunk<Article[], FetchArticlesListPr
 			const response = await extra.api.get<Article[]>("/articles", {
 				params: {
 					_expand: "user",
-					_limit: limit,
 					_page: page,
+					_limit: limit,
 				},
 			})
 

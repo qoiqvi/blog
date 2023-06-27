@@ -20,6 +20,7 @@ import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader"
 import { Text, TextTheme } from "shared/ui/Text"
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect"
 import { useParams } from "react-router-dom"
+import { Page } from "shared/ui/Page"
 
 export interface ProfilePageProps {
 	className?: string
@@ -103,31 +104,33 @@ const ProfilePage = memo((props: ProfilePageProps) => {
 			reducers={reducers}
 			removeAfterUnmount
 		>
-			<ProfilePageHeader />
-			{validateError?.length &&
-				validateError.map((err) => (
-					<Text
-						theme={TextTheme.ERROR}
-						text={err}
-						key={err}
+			<Page>
+				<ProfilePageHeader />
+				{validateError?.length &&
+					validateError.map((err) => (
+						<Text
+							theme={TextTheme.ERROR}
+							text={err}
+							key={err}
+						/>
+					))}
+				<div className={classNames("", {}, [className])}>
+					<ProfileCard
+						formData={formData}
+						isLoading={isLoading}
+						error={error}
+						readonly={readonly}
+						onChangeFirstname={onChangeFirstname}
+						onChangeLastname={onChangeLastname}
+						onChangeUsername={onChangeUsername}
+						onChangeAge={onChangeAge}
+						onChangeCity={onChangeCity}
+						onChangeAvatar={onChangeAvatar}
+						onChangeCurrency={onChangeCurrency}
+						onChangeCountry={onChangeCountry}
 					/>
-				))}
-			<div className={classNames("", {}, [className])}>
-				<ProfileCard
-					formData={formData}
-					isLoading={isLoading}
-					error={error}
-					readonly={readonly}
-					onChangeFirstname={onChangeFirstname}
-					onChangeLastname={onChangeLastname}
-					onChangeUsername={onChangeUsername}
-					onChangeAge={onChangeAge}
-					onChangeCity={onChangeCity}
-					onChangeAvatar={onChangeAvatar}
-					onChangeCurrency={onChangeCurrency}
-					onChangeCountry={onChangeCountry}
-				/>
-			</div>
+				</div>
+			</Page>
 		</DynamicModuleLoader>
 	)
 })

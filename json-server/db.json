@@ -510,10 +510,10 @@
 		},
 		{
 			"id": "17",
-			"title": "Kotlin news",
+			"title": "HTML news",
 			"subtitle": "Что нового в JS за 2022 год?",
-			"img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kotlin_Icon.svg/2048px-Kotlin_Icon.svg.png",
-			"views": 1022,
+			"img": "https://younglinux.info/images/htmlcss/intro/html5_css3_logo.png",
+			"views": 1,
 			"createdAt": "26.02.2022",
 			"userId": "1",
 			"type": ["IT"],
@@ -615,6 +615,18 @@
 			"userId": "2",
 			"text": "chikipop",
 			"id": "oCnW_J6"
+		},
+		{
+			"articleId": "4",
+			"userId": "1",
+			"text": "dwqdwqd",
+			"id": "RZ6Ra65"
+		},
+		{
+			"articleId": "17",
+			"userId": "1",
+			"text": "17",
+			"id": "mz4DHzI"
 		}
 	],
 	"users": [
@@ -642,7 +654,7 @@
 			"currency": "RUB",
 			"country": "Russia",
 			"city": "Moscow",
-			"username": "citraqs",
+			"username": "qoiqvi",
 			"avatar": "https://upload.wikimedia.org/wikipedia/en/4/43/Pok%C3%A9mon_Mewtwo_art.png"
 		},
 		{
