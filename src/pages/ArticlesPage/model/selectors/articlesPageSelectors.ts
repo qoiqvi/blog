@@ -11,6 +11,6 @@ export const getArticlesListLimit = (state: StateSchema) => state.articlesPage?.
 
 export const getArticlesListPage = (state: StateSchema) => state.articlesPage?.page || 1
 
-export const getArticlesListHasMore = (state: StateSchema) => state.articlesPage?.hasMore || true
+export const getArticlesListHasMore = (state: StateSchema) => state.articlesPage?.hasMore
 
 export const getArticlesListInited = (state: StateSchema) => state.articlesPage?._inited || false

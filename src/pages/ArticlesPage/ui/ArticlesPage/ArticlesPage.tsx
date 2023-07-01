@@ -9,6 +9,7 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
 import { useSelector } from "react-redux"
 import {
 	getArticlesListError,
+	getArticlesListHasMore,
 	getArticlesListInited,
 	getArticlesListIsLoading,
 	getArticlesListView,
@@ -16,9 +17,9 @@ import {
 import { memo, useCallback } from "react"
 import { ArticlePageViewSelector } from "../ArticlePageViewSelector/ArticlePageViewSelector"
 import { Page } from "widgets/Page"
-import { fetchNextArticles } from "pages/ArticlesPage/model/services/fetchNextArticles/fetchNextArticles"
-import { initArticlesPage } from "pages/ArticlesPage/model/services/initArticlesPage/initArticlesPage"
-import { fetchArticlesList } from "pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList"
+import { fetchNextArticles } from "../../model/services/fetchNextArticles/fetchNextArticles"
+import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage"
+import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList"
 export interface ArticlesPageProps {
 	className?: string
 }
@@ -36,6 +37,14 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	const view = useSelector(getArticlesListView)
 	const articles = useSelector(getArticles.selectAll)
 	const inited = useSelector(getArticlesListInited)
+	const hasMore = useSelector(getArticlesListHasMore)
+
+	// const onLoadNextPart = useCallback(() => {
+	// 	console.log("onLoadNextpart")
+	// 	if (hasMore && !isLoading) {
+	// 		dispatch(fetchNextArticles())
+	// 	}
+	// }, [dispatch, hasMore, isLoading])
 
 	const onLoadNextPart = useCallback(() => {
 		dispatch(fetchNextArticles())
@@ -44,7 +53,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	useInitialEffect(() => {
 		// dispatch(initArticlesPage())
 		if (!inited) {
-			dispatch(ArticlesPageSliceActions.initState)
+			dispatch(ArticlesPageSliceActions.initState())
 			dispatch(fetchArticlesList({ page: 1 }))
 		}
 	})

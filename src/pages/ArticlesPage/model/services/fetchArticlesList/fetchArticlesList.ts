@@ -24,7 +24,6 @@ export const fetchArticlesList = createAsyncThunk<Article[], FetchArticlesListPr
 			if (!response.data) {
 				throw new Error()
 			}
-
 			return response.data
 		} catch (error) {
 			return rejectWithValue("error")

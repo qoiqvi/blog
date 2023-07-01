@@ -5,6 +5,8 @@ import { memo } from "react"
 import { Article, ArticleView } from "../../model/types/article"
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem"
 import { ArticleListItemSkeleton } from "../ArticleListItem/ArticleListItemSkeleton"
+import { useSelector } from "react-redux"
+import { getArticlesListHasMore } from "pages/ArticlesPage/model/selectors/articlesPageSelectors"
 
 export interface ArticleListProps {
 	className?: string
@@ -25,7 +27,7 @@ const getSkeletons = (view: ArticleView) =>
 export const ArticleList = memo((props: ArticleListProps) => {
 	const { className, articles, isLoading, view } = props
 	const { t } = useTranslation()
-
+	const hasMore = useSelector(getArticlesListHasMore)
 	const renderArticles = (article: Article) => (
 		<ArticleListItem
 			key={article.id}
@@ -38,7 +40,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 	return (
 		<div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
 			{articles.length > 0 ? articles.map(renderArticles) : null}
-			{isLoading && getSkeletons(view)}
+			{isLoading && hasMore && getSkeletons(view)}
 		</div>
 	)
 })

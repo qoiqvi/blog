@@ -1,6 +1,6 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./Page.module.scss"
-import { MutableRefObject, ReactNode, UIEvent, UIEventHandler, memo, useRef } from "react"
+import { MutableRefObject, ReactNode, UIEvent, memo, useRef } from "react"
 import { useInfiniteScroll } from "shared/lib/hooks/useInfiniteScroll/useInfiniteScroll"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
 import { SaveScrollSliceActions } from "../SaveScroll/model/slice/SaveScrollSlice"
@@ -9,6 +9,7 @@ import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEf
 import { useSelector } from "react-redux"
 import { getScroll } from "../SaveScroll/model/selectors/getScroll"
 import { StateSchema } from "App/provider/StoreProvider"
+import { useThrottle } from "shared/lib/hooks/useThrottle/useThrottle"
 
 export interface PageProps {
 	className?: string
@@ -34,15 +35,16 @@ export const Page = memo((props: PageProps) => {
 		callback: onScrollEnd,
 	})
 
-	const onScroll = (e: UIEvent<HTMLDivElement>) => {
-		console.log()
+	const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+		// console.log("SCROLL")
 		dispatch(
 			SaveScrollSliceActions.setScrollPosition({
 				path: pathname,
 				position: e.currentTarget.scrollTop,
 			})
 		)
-	}
+	}, 500)
+
 	return (
 		<section
 			ref={wrapperRef}
@@ -50,7 +52,12 @@ export const Page = memo((props: PageProps) => {
 			onScroll={onScroll}
 		>
 			{children}
-			<div ref={triggerRef} />
+			{onScrollEnd ? (
+				<div
+					ref={triggerRef}
+					className={cls.trigger}
+				/>
+			) : null}
 		</section>
 	)
 })
