@@ -20,6 +20,7 @@ import { Page } from "widgets/Page"
 import { fetchNextArticles } from "../../model/services/fetchNextArticles/fetchNextArticles"
 import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage"
 import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList"
+import { ArticlePageFilters } from "../ArticlePageFilters/ui/ArticlePageFilters"
 export interface ArticlesPageProps {
 	className?: string
 }
@@ -37,14 +38,6 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	const view = useSelector(getArticlesListView)
 	const articles = useSelector(getArticles.selectAll)
 	const inited = useSelector(getArticlesListInited)
-	const hasMore = useSelector(getArticlesListHasMore)
-
-	// const onLoadNextPart = useCallback(() => {
-	// 	console.log("onLoadNextpart")
-	// 	if (hasMore && !isLoading) {
-	// 		dispatch(fetchNextArticles())
-	// 	}
-	// }, [dispatch, hasMore, isLoading])
 
 	const onLoadNextPart = useCallback(() => {
 		dispatch(fetchNextArticles())
@@ -58,13 +51,6 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 		}
 	})
 
-	const onChangeView = useCallback(
-		(view: ArticleView) => {
-			dispatch(ArticlesPageSliceActions.setView(view))
-		},
-		[dispatch]
-	)
-
 	return (
 		<DynamicModuleLoader
 			reducers={reducers}
@@ -74,15 +60,12 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 				onScrollEnd={onLoadNextPart}
 				className={classNames(cls.ArticlesPage, {}, [className])}
 			>
-				<ArticlePageViewSelector
-					view={view}
-					changeView={onChangeView}
-					className={cls.viewSelector}
-				/>
+				<ArticlePageFilters />
 				<ArticleList
 					view={view}
 					isLoading={isLoading}
 					articles={articles}
+					className={cls.list}
 				/>
 			</Page>
 		</DynamicModuleLoader>

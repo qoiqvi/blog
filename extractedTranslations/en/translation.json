@@ -5,13 +5,34 @@
   "Add comment": "Add comment",
   "All articles": "All articles",
   "Article not found": "Article not found",
+  "Ascending": "Ascending",
+  "By": "By",
   "Comment": "Comment",
   "Comments": "Comments",
+  "Created": "Created",
+  "Descending": "Descending",
   "Error": "Error",
   "Full": "",
+  "Search": {
+    "": {
+      "": {
+        "": ""
+      }
+    }
+  },
+  "Sort": "Sort",
   "TOGGLE": "TOGGLE",
   "There are no comments yet": "There are no comments yet",
+  "Title": "Title",
   "Toggle view": "",
+  "Views": "Views",
+  "search": {
+    "": {
+      "": {
+        "": ""
+      }
+    }
+  },
   "Аватар": "Аватар",
   "Авторизация": "",
   "Валюта": "Валюта",

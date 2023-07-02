@@ -10,7 +10,7 @@ export interface CountrySelectorProps {
 	readonly?: boolean
 }
 
-const data = [
+const options = [
 	{ value: Country.Russia, content: "Россия" },
 	{ value: Country.Armenia, content: "Армения" },
 	{ value: Country.Belarus, content: "Беларусь" },
@@ -29,7 +29,7 @@ export const CountrySelect = (props: CountrySelectorProps) => {
 	)
 	return (
 		<Select
-			data={data}
+			options={options}
 			onChange={onChangeHandler}
 			value={value}
 			placeholder={t("Страна")}
