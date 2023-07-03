@@ -9,6 +9,7 @@ import {
 	getArticlesListOrder,
 	getArticlesListSearch,
 	getArticlesListSort,
+	getArticlesListType,
 	getArticlesListView,
 } from "../../../model/selectors/articlesPageSelectors"
 import { ArticleSortField, ArticleSortSelector, ArticleView } from "entities/Article"
@@ -16,6 +17,11 @@ import { ArticlesPageSliceActions } from "../../../model/slice/articlesPageSlice
 import { Card } from "shared/ui/Card"
 import { Input } from "shared/ui/Input"
 import { SortOrder } from "shared/types"
+import { fetchArticlesList } from "pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList"
+import { useDebounce } from "shared/lib/hooks/useDebounce/useDebounce"
+import { TabItem } from "shared/ui/Tabs/ui/Tabs"
+import { ArticleType } from "entities/Article/model/types/article"
+import { ArticlePageTabs } from "../../ArticlePageTabs/ui/ArticlePageTabs"
 
 export interface ArticlePageFiltersProps {
 	className?: string
@@ -29,10 +35,19 @@ export const ArticlePageFilters = memo((props: ArticlePageFiltersProps) => {
 	const sort = useSelector(getArticlesListSort)
 	const order = useSelector(getArticlesListOrder)
 	const search = useSelector(getArticlesListSearch)
+	const type = useSelector(getArticlesListType)
+
+	const fetchData = useCallback(() => {
+		dispatch(fetchArticlesList({ replace: true }))
+	}, [dispatch])
+
+	const debouncedFetchData = useDebounce(fetchData, 500)
 
 	const onChangeView = useCallback(
 		(view: ArticleView) => {
 			dispatch(ArticlesPageSliceActions.setView(view))
+			dispatch(ArticlesPageSliceActions.setPage(1))
+			fetchArticlesList({})
 		},
 		[dispatch]
 	)
@@ -40,15 +55,37 @@ export const ArticlePageFilters = memo((props: ArticlePageFiltersProps) => {
 	const onChangeSort = useCallback(
 		(newSort: ArticleSortField) => {
 			dispatch(ArticlesPageSliceActions.setSort(newSort))
+			dispatch(ArticlesPageSliceActions.setPage(1))
+			fetchData()
 		},
-		[dispatch]
+		[dispatch, fetchData]
+	)
+
+	const onChangeType = useCallback(
+		(newType: TabItem) => {
+			dispatch(ArticlesPageSliceActions.setType(newType.value as ArticleType))
+			dispatch(ArticlesPageSliceActions.setPage(1))
+			fetchData()
+		},
+		[dispatch, fetchData]
 	)
 
 	const onChangeOrder = useCallback(
 		(newOrder: SortOrder) => {
 			dispatch(ArticlesPageSliceActions.setOrder(newOrder))
+			dispatch(ArticlesPageSliceActions.setPage(1))
+			fetchData()
 		},
-		[dispatch]
+		[dispatch, fetchData]
+	)
+
+	const onChangeSearch = useCallback(
+		(value: string) => {
+			dispatch(ArticlesPageSliceActions.setSearch(value))
+			dispatch(ArticlesPageSliceActions.setPage(1))
+			debouncedFetchData()
+		},
+		[debouncedFetchData, dispatch]
 	)
 
 	return (
@@ -68,9 +105,15 @@ export const ArticlePageFilters = memo((props: ArticlePageFiltersProps) => {
 			<Card className={cls.search}>
 				<Input
 					value={search}
+					onChange={onChangeSearch}
 					placeholder={t("search...")}
 				/>
 			</Card>
+			<ArticlePageTabs
+				type={type}
+				onChangeType={onChangeType}
+				className={cls.tabs}
+			/>
 		</div>
 	)
 })

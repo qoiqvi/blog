@@ -3,6 +3,7 @@
   "123": "123",
   "About": "",
   "Add comment": "Add comment",
+  "All": "All",
   "All articles": "All articles",
   "Article not found": "Article not found",
   "Ascending": "Ascending",
@@ -11,8 +12,11 @@
   "Comments": "Comments",
   "Created": "Created",
   "Descending": "Descending",
+  "Economic": "Economic",
   "Error": "Error",
   "Full": "",
+  "IT": "IT",
+  "Science": "Science",
   "Search": {
     "": {
       "": {

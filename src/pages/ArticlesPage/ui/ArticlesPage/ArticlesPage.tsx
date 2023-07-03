@@ -1,26 +1,23 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./ArticlesPage.module.scss"
 import { useTranslation } from "react-i18next"
-import { ArticleList, ArticleView } from "entities/Article"
+import { ArticleList } from "entities/Article"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
-import { ArticlesPageSliceActions, ArticlesPageSliceReducer, getArticles } from "../../model/slice/articlesPageSlice"
+import { ArticlesPageSliceReducer, getArticles } from "../../model/slice/articlesPageSlice"
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
 import { useSelector } from "react-redux"
 import {
 	getArticlesListError,
-	getArticlesListHasMore,
-	getArticlesListInited,
 	getArticlesListIsLoading,
 	getArticlesListView,
 } from "../../model/selectors/articlesPageSelectors"
 import { memo, useCallback } from "react"
-import { ArticlePageViewSelector } from "../ArticlePageViewSelector/ArticlePageViewSelector"
 import { Page } from "widgets/Page"
 import { fetchNextArticles } from "../../model/services/fetchNextArticles/fetchNextArticles"
 import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage"
-import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList"
 import { ArticlePageFilters } from "../ArticlePageFilters/ui/ArticlePageFilters"
+import { useSearchParams } from "react-router-dom"
 export interface ArticlesPageProps {
 	className?: string
 }
@@ -37,18 +34,14 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	const isLoading = useSelector(getArticlesListIsLoading)
 	const view = useSelector(getArticlesListView)
 	const articles = useSelector(getArticles.selectAll)
-	const inited = useSelector(getArticlesListInited)
+	const [params] = useSearchParams()
 
 	const onLoadNextPart = useCallback(() => {
 		dispatch(fetchNextArticles())
 	}, [dispatch])
 
 	useInitialEffect(() => {
-		// dispatch(initArticlesPage())
-		if (!inited) {
-			dispatch(ArticlesPageSliceActions.initState())
-			dispatch(fetchArticlesList({ page: 1 }))
-		}
+		dispatch(initArticlesPage(params))
 	})
 
 	return (

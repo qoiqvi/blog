@@ -4,7 +4,7 @@ import { Article, ArticleView } from "entities/Article"
 import { ArticlesPageSchema } from "../types/articlesPageSchema"
 import { fetchArticlesList } from "../services/fetchArticlesList/fetchArticlesList"
 import { VIEW_LOCALSTORAGE_KEY } from "shared/const/localStorage"
-import { ArticleSortField } from "entities/Article/model/types/article"
+import { ArticleSortField, ArticleType } from "entities/Article/model/types/article"
 import { SortOrder } from "shared/types"
 
 const articlesAdapter = createEntityAdapter<Article>({
@@ -28,8 +28,9 @@ export const ArticlesPageSlice = createSlice({
 		hasMore: true,
 		_inited: false,
 		search: "",
-		order: "asc",
+		order: "desc",
 		sort: ArticleSortField.CREATED,
+		type: ArticleType.ALL,
 	}),
 	reducers: {
 		setView: (state, action: PayloadAction<ArticleView>) => {
@@ -54,17 +55,27 @@ export const ArticlesPageSlice = createSlice({
 		setOrder: (state, action: PayloadAction<SortOrder>) => {
 			state.order = action.payload
 		},
+		setType: (state, action: PayloadAction<ArticleType>) => {
+			state.type = action.payload
+		},
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchArticlesList.pending, (state) => {
+			.addCase(fetchArticlesList.pending, (state, action) => {
 				state.isLoading = true
 				state.error = undefined
+				if (action.meta.arg.replace) {
+					articlesAdapter.removeAll(state)
+				}
 			})
-			.addCase(fetchArticlesList.fulfilled, (state, action: PayloadAction<Article[]>) => {
+			.addCase(fetchArticlesList.fulfilled, (state, action) => {
 				state.isLoading = false
-				articlesAdapter.addMany(state, action.payload)
-				state.hasMore = action.payload.length > 1
+				state.hasMore = action.payload.length >= state.limit
+				if (action.meta.arg.replace) {
+					articlesAdapter.setAll(state, action.payload)
+				} else {
+					articlesAdapter.addMany(state, action.payload)
+				}
 			})
 			.addCase(fetchArticlesList.rejected, (state, action) => {
 				state.isLoading = false
