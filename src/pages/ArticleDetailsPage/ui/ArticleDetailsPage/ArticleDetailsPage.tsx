@@ -21,6 +21,7 @@ import { sendArticleComment } from "../../model/services/sendArticleComment/send
 import { AppButton, ButtonTheme } from "shared/ui/AppButton"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { Page } from "widgets/Page"
+import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader"
 
 export interface ArticleDetailsPageProps {
 	className?: string
@@ -50,9 +51,6 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 		},
 		[dispatch]
 	)
-	const onBackToArticles = useCallback(() => {
-		navigate(RoutePath.articles)
-	}, [navigate])
 
 	if (!id) {
 		return <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</Page>
@@ -68,12 +66,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 			removeAfterUnmount
 		>
 			<Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-				<AppButton
-					onClick={onBackToArticles}
-					theme={ButtonTheme.OUTLINED}
-				>
-					{t("All articles")}
-				</AppButton>
+				<ArticleDetailsPageHeader />
 				<ArticleDetails id={id} />
 				<Text
 					className={cls.commentTitle}

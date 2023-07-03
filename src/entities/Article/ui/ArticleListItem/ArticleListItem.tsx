@@ -13,7 +13,6 @@ import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleT
 import { AppButton, ButtonTheme } from "shared/ui/AppButton"
 import { useNavigate } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
-import { ArticleListItemSkeleton } from "./ArticleListItemSkeleton"
 
 export interface ArticleListItemProps {
 	className?: string
@@ -27,7 +26,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 	const navigate = useNavigate()
 
 	const onOpenArticle = useCallback(() => {
-		navigate(RoutePath["articles/"] + article.id)
+		navigate(RoutePath["article/"] + article.id)
 	}, [article.id, navigate])
 
 	if (view === ArticleView.DETAIL) {
