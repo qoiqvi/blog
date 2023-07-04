@@ -5,13 +5,15 @@ import { articleDetailsReducer } from "entities/Article/model/slice/articleDetai
 import { profileSliceReducer } from "entities/Profile"
 import { addNewCommentReducer } from "features/AddNewComment/model/slice/addNewCommentSlice"
 import { loginSliceReducer } from "features/AuthByUserName/model/slice/loginSlice"
+import { articleDetailsPageReducer } from "pages/ArticleDetailsPage/model/slices"
+import { ReducersList } from "shared/lib/components/DynamicModuleLoader"
 
 const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
 	loginForm: loginSliceReducer,
 	profile: profileSliceReducer,
 	articleDetails: articleDetailsReducer,
-	articleDetailsComments: articleDetailsReducer,
 	addNewComment: addNewCommentReducer,
+	articleDetailsPage: articleDetailsPageReducer,
 }
 
 export const StoreDecorator =

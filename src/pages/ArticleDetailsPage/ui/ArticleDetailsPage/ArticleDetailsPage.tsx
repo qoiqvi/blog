@@ -2,12 +2,12 @@ import { classNames } from "shared/lib/classNames/className"
 import cls from "./ArticleDetailsPage.module.scss"
 import { useTranslation } from "react-i18next"
 import { ArticleDetails } from "entities/Article"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Text } from "shared/ui/Text"
 import { CommentList } from "entities/Comment"
 import { memo, useCallback } from "react"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
-import { articleDetailsCommentsReducer, getArticleComments } from "../../model/slice/articleDetailsCommentsSlice"
+import { articleDetailsCommentsReducer, getArticleComments } from "../../model/slices/articleDetailsCommentsSlice"
 import { useSelector } from "react-redux"
 import {
 	getArticleDetailsPageCommentErorr,
@@ -18,10 +18,11 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
 import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId"
 import { AddNewComment } from "features/AddNewComment"
 import { sendArticleComment } from "../../model/services/sendArticleComment/sendArticleComment"
-import { AppButton, ButtonTheme } from "shared/ui/AppButton"
-import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { Page } from "widgets/Page"
 import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader"
+import { articleDetailsRecomendationsReducer } from "../../model/slices/articleDetailsRecomendationsSlice"
+import { ArticleDetailsRecomendations } from "../ArticleDetailsRecomendations/ArticleDetailsRecomendations"
+import { articleDetailsPageReducer } from "pages/ArticleDetailsPage/model/slices"
 
 export interface ArticleDetailsPageProps {
 	className?: string
@@ -31,18 +32,16 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 	const { className } = props
 	const { t } = useTranslation("article-details")
 	const { id } = useParams<{ id: string }>()
+	const dispatch = useAppDispatch()
 	const comments = useSelector(getArticleComments.selectAll)
 	const error = useSelector(getArticleDetailsPageCommentErorr)
 	const commentsIsLoading = useSelector(getArticleDetailsPageCommentIsLoading)
-	const dispatch = useAppDispatch()
-	const navigate = useNavigate()
 
 	useInitialEffect(() => {
 		dispatch(fetchCommentsByArticleId(id))
 	})
-
 	const reducers: ReducersList = {
-		articleDetailsComments: articleDetailsCommentsReducer,
+		articleDetailsPage: articleDetailsPageReducer,
 	}
 
 	const onSendComment = useCallback(
@@ -59,7 +58,6 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 	if (error) {
 		return <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</Page>
 	}
-
 	return (
 		<DynamicModuleLoader
 			reducers={reducers}
@@ -68,6 +66,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 			<Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
 				<ArticleDetailsPageHeader />
 				<ArticleDetails id={id} />
+				<ArticleDetailsRecomendations />
 				<Text
 					className={cls.commentTitle}
 					title={t("Comments")}

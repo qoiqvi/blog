@@ -10,13 +10,20 @@
   "By": "By",
   "Comment": "Comment",
   "Comments": "Comments",
+  "Create Article": "Create Article",
   "Created": "Created",
   "Descending": "Descending",
   "Economic": "Economic",
   "Edit article": "Edit article",
   "Error": "Error",
   "Full": "",
+  "Habr 2": {
+    "0": "0"
+  },
   "IT": "IT",
+  "Log in": "Log in",
+  "Log out": "Log out",
+  "Recomendations not found": "Recomendations not found",
   "Science": "Science",
   "Search": {
     "": {
@@ -31,6 +38,8 @@
   "Title": "Title",
   "Toggle view": "",
   "Views": "Views",
+  "Yo": "Yo",
+  "You may like": "You may like",
   "search": {
     "": {
       "": {

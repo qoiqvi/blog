@@ -6,7 +6,11 @@ import type { ProfileSchema } from "entities/Profile"
 import type { UserSchema } from "entities/User"
 import type { addNewCommentSchema } from "features/AddNewComment"
 import type { LoginSchema } from "features/AuthByUserName"
-import type { ArticleDetailsCommentsSchema } from "pages/ArticleDetailsPage"
+import type {
+	ArticleDetailsCommentsSchema,
+	ArticleDetailsPageSchema,
+	ArticleDetailsRecomendationsSchema,
+} from "pages/ArticleDetailsPage"
 import type { ArticlesPageSchema } from "pages/ArticlesPage"
 import type { SaveScrollSchema } from "widgets/Page"
 
@@ -14,14 +18,13 @@ export interface StateSchema {
 	counter: CounterSchema
 	user: UserSchema
 	saveScroll: SaveScrollSchema
-
 	//	async Reducers
 	loginForm?: LoginSchema
 	profile?: ProfileSchema
 	articleDetails?: ArticleDetailsSchema
-	articleDetailsComments?: ArticleDetailsCommentsSchema
 	addNewComment?: addNewCommentSchema
 	articlesPage?: ArticlesPageSchema
+	articleDetailsPage?: ArticleDetailsPageSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

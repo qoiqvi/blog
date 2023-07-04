@@ -26,6 +26,10 @@ export const ArticleDetailsPageHeader = memo((props: ArticleDetailsPageHeaderPro
 		navigate(RoutePath.articles)
 	}, [navigate])
 
+	const onEdit = useCallback(() => {
+		navigate(`${RoutePath["article/"]}${article?.id}/edit`)
+	}, [article?.id, navigate])
+
 	return (
 		<div className={classNames(cls.ArticleDetailsPageHeader, {}, [className])}>
 			<AppButton
@@ -36,7 +40,7 @@ export const ArticleDetailsPageHeader = memo((props: ArticleDetailsPageHeaderPro
 			</AppButton>
 			{canEdit && (
 				<AppButton
-					onClick={onBackToArticles}
+					onClick={onEdit}
 					theme={ButtonTheme.OUTLINED}
 					className={cls.editBtn}
 				>
