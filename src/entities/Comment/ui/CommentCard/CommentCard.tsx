@@ -1,12 +1,10 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./CommentCard.module.scss"
-import { useTranslation } from "react-i18next"
 import { Comment } from "../../model/types/comment"
 import { Avatar } from "shared/ui/Avatar"
 import { Text } from "shared/ui/Text"
 import { Skeleton } from "shared/ui/Skeleton"
 import { AppLink } from "shared/ui/AppLink"
-import { useNavigate } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 
 export interface CommentCardProps {
@@ -17,8 +15,6 @@ export interface CommentCardProps {
 
 export const CommentCard = (props: CommentCardProps) => {
 	const { className, comment, isLoading } = props
-	const { t } = useTranslation()
-	const navigate = useNavigate()
 
 	if (isLoading) {
 		return (

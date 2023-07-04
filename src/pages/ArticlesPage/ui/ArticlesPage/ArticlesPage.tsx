@@ -1,6 +1,5 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./ArticlesPage.module.scss"
-import { useTranslation } from "react-i18next"
 import { ArticleList } from "entities/Article"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
 import { ArticlesPageSliceReducer, getArticles } from "../../model/slice/articlesPageSlice"
@@ -18,6 +17,7 @@ import { fetchNextArticles } from "../../model/services/fetchNextArticles/fetchN
 import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage"
 import { ArticlePageFilters } from "../ArticlePageFilters/ui/ArticlePageFilters"
 import { useSearchParams } from "react-router-dom"
+import { Text, TextTheme } from "shared/ui/Text"
 export interface ArticlesPageProps {
 	className?: string
 }
@@ -28,7 +28,6 @@ const reducers: ReducersList = {
 
 const ArticlesPage = (props: ArticlesPageProps) => {
 	const { className } = props
-	const { t } = useTranslation()
 	const dispatch = useAppDispatch()
 	const error = useSelector(getArticlesListError)
 	const isLoading = useSelector(getArticlesListIsLoading)
@@ -43,6 +42,15 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 	useInitialEffect(() => {
 		dispatch(initArticlesPage(params))
 	})
+
+	if (error) {
+		return (
+			<Text
+				theme={TextTheme.ERROR}
+				text="Произошла непредвиденная ошибка"
+			/>
+		)
+	}
 
 	return (
 		<DynamicModuleLoader

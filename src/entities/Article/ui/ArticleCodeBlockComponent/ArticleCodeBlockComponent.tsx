@@ -1,6 +1,5 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./ArticleCodeBlockComponent.module.scss"
-import { useTranslation } from "react-i18next"
 import { memo } from "react"
 import { type ArticleCodeBlock } from "../../model/types/article"
 import { Code } from "shared/ui/Code"
@@ -12,7 +11,6 @@ export interface ArticleCodeBlockComponentProps {
 
 export const ArticleCodeBlockComponent = memo((props: ArticleCodeBlockComponentProps) => {
 	const { className, block } = props
-	const { t } = useTranslation()
 	return (
 		<div className={classNames(cls.ArticleCodeBlockComponent, {}, [className])}>
 			<Code text={block.code} />

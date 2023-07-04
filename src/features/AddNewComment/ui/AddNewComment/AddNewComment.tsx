@@ -9,6 +9,7 @@ import { useSelector } from "react-redux"
 import { getAddNewCommentError, getAddNewCommentText } from "../../model/selectors/addNewComment"
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch"
 import { memo, useCallback } from "react"
+import { Text, TextTheme } from "shared/ui/Text"
 
 export interface AddNewCommentProps {
 	className?: string
@@ -37,6 +38,15 @@ const AddNewComment = memo((props: AddNewCommentProps) => {
 		onSendComment?.(text || "")
 		dispatch(addNewCommentActions.setText(""))
 	}, [dispatch, onSendComment, text])
+
+	if (error) {
+		return (
+			<Text
+				theme={TextTheme.ERROR}
+				text={t("Error")}
+			/>
+		)
+	}
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>

@@ -1,9 +1,11 @@
 .fill {
 	fill: var(--primary-color);
 }
+
 .stroke {
 	stroke: var(--primary-color);
 	fill: var(--bg-color);
+
 	// path {
 	// 	stroke: var(--inverted-primary-color);
 	// }

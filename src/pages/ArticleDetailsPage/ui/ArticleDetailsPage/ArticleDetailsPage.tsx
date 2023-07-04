@@ -7,7 +7,7 @@ import { Text } from "shared/ui/Text"
 import { CommentList } from "entities/Comment"
 import { memo, useCallback } from "react"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
-import { articleDetailsCommentsReducer, getArticleComments } from "../../model/slices/articleDetailsCommentsSlice"
+import { getArticleComments } from "../../model/slices/articleDetailsCommentsSlice"
 import { useSelector } from "react-redux"
 import {
 	getArticleDetailsPageCommentErorr,
@@ -20,7 +20,6 @@ import { AddNewComment } from "features/AddNewComment"
 import { sendArticleComment } from "../../model/services/sendArticleComment/sendArticleComment"
 import { Page } from "widgets/Page"
 import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader"
-import { articleDetailsRecomendationsReducer } from "../../model/slices/articleDetailsRecomendationsSlice"
 import { ArticleDetailsRecomendations } from "../ArticleDetailsRecomendations/ArticleDetailsRecomendations"
 import { articleDetailsPageReducer } from "pages/ArticleDetailsPage/model/slices"
 

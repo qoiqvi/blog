@@ -2,7 +2,7 @@ import { classNames } from "shared/lib/classNames/className"
 import cls from "./ArticleDetailsRecomendations.module.scss"
 import { useTranslation } from "react-i18next"
 import { memo } from "react"
-import { Article, ArticleList, ArticleView } from "entities/Article"
+import { ArticleList, ArticleView } from "entities/Article"
 import { Text, TextTheme } from "shared/ui/Text"
 import {
 	getArticleDetailsPageRecomendationsIsLoading,

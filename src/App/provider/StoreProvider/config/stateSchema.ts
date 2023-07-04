@@ -6,11 +6,7 @@ import type { ProfileSchema } from "entities/Profile"
 import type { UserSchema } from "entities/User"
 import type { addNewCommentSchema } from "features/AddNewComment"
 import type { LoginSchema } from "features/AuthByUserName"
-import type {
-	ArticleDetailsCommentsSchema,
-	ArticleDetailsPageSchema,
-	ArticleDetailsRecomendationsSchema,
-} from "pages/ArticleDetailsPage"
+import type { ArticleDetailsPageSchema } from "pages/ArticleDetailsPage"
 import type { ArticlesPageSchema } from "pages/ArticlesPage"
 import type { SaveScrollSchema } from "widgets/Page"
 

@@ -1,6 +1,5 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./ArticleTextBlockComponent.module.scss"
-import { useTranslation } from "react-i18next"
 import { memo } from "react"
 import type { ArticleTextBlock } from "entities/Article/model/types/article"
 import { Text } from "shared/ui/Text"
@@ -12,7 +11,6 @@ export interface ArticleTextBlockComponentProps {
 
 export const ArticleTextBlockComponent = memo((props: ArticleTextBlockComponentProps) => {
 	const { className, block } = props
-	const { t } = useTranslation()
 	if (!block) {
 		return null
 	}

@@ -56,6 +56,7 @@ module.exports = {
     "promise/param-names": 0,
     "@typescript-eslint/no-floating-promises": 0,
     "@typescript-eslint/restrict-template-expressions": 0,
-    "@typescript-eslint/consistent-type-imports": 0
+    "@typescript-eslint/consistent-type-imports": 0,
+    "@typescript-eslint/member-delimiter-style": 0
   }
 }

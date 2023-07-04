@@ -22,9 +22,11 @@ body {
 	width: 12px;
 	height: 8px; /* ширина scrollbar */
 }
+
 *::-webkit-scrollbar-track {
 	background: var(--card-bg); /* цвет дорожки */
 }
+
 *::-webkit-scrollbar-thumb {
 	background-color: var(--inverted-primary-color); /* цвет плашки */
 	border-radius: 20px; /* закругления плашки */

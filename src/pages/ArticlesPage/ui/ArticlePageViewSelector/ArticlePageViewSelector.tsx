@@ -1,6 +1,5 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./ArticlePageViewSelector.module.scss"
-import { useTranslation } from "react-i18next"
 import { memo } from "react"
 import { ArticleView } from "entities/Article"
 import { Icon } from "shared/ui/Icon"
@@ -17,7 +16,6 @@ export interface ArticlePageViewSelectorProps {
 
 export const ArticlePageViewSelector = memo((props: ArticlePageViewSelectorProps) => {
 	const { className, changeView, view } = props
-	const { t } = useTranslation()
 	return (
 		<div className={classNames(cls.ArticlePageViewSelector, {}, [className])}>
 			<AppButton

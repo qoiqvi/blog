@@ -6,7 +6,6 @@ import { AppButton, ButtonTheme } from "shared/ui/AppButton"
 import { useNavigate } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { useSelector } from "react-redux"
-import { getUserAuthData } from "entities/User"
 import { getArticleDetailsData } from "entities/Article"
 import { getCanEditArticle } from "pages/ArticleDetailsPage/model/selectors/article"
 
@@ -18,7 +17,6 @@ export const ArticleDetailsPageHeader = memo((props: ArticleDetailsPageHeaderPro
 	const { className } = props
 	const { t } = useTranslation()
 	const navigate = useNavigate()
-	const userData = useSelector(getUserAuthData)
 	const article = useSelector(getArticleDetailsData)
 	const canEdit = useSelector(getCanEditArticle)
 

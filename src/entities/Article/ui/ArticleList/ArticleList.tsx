@@ -1,6 +1,5 @@
 import { classNames } from "shared/lib/classNames/className"
 import cls from "./ArticleList.module.scss"
-import { useTranslation } from "react-i18next"
 import { HTMLAttributeAnchorTarget, memo } from "react"
 import { Article, ArticleView } from "../../model/types/article"
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem"
@@ -27,7 +26,6 @@ const getSkeletons = (view: ArticleView) =>
 
 export const ArticleList = memo((props: ArticleListProps) => {
 	const { className, articles, isLoading, view, target } = props
-	const { t } = useTranslation()
 	const hasMore = useSelector(getArticlesListHasMore)
 	const renderArticles = (article: Article) => (
 		<ArticleListItem
