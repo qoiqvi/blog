@@ -13,6 +13,7 @@ export interface ArticleListProps {
 	isLoading?: boolean
 	view: ArticleView
 	target?: HTMLAttributeAnchorTarget
+	recomendation?: boolean
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -25,7 +26,7 @@ const getSkeletons = (view: ArticleView) =>
 	))
 
 export const ArticleList = memo((props: ArticleListProps) => {
-	const { className, articles, isLoading, view, target } = props
+	const { className, articles, isLoading, view, target, recomendation } = props
 	const hasMore = useSelector(getArticlesListHasMore)
 	const renderArticles = (article: Article) => (
 		<ArticleListItem
@@ -41,6 +42,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 		<div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
 			{articles.length > 0 ? articles.map(renderArticles) : null}
 			{isLoading && hasMore && getSkeletons(view)}
+			{isLoading && recomendation && getSkeletons(view)}
 		</div>
 	)
 })

@@ -21,7 +21,7 @@ import { sendArticleComment } from "../../model/services/sendArticleComment/send
 import { Page } from "widgets/Page"
 import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader"
 import { ArticleDetailsRecomendations } from "../ArticleDetailsRecomendations/ArticleDetailsRecomendations"
-import { articleDetailsPageReducer } from "pages/ArticleDetailsPage/model/slices"
+import { articleDetailsPageReducer } from "../../model/slices"
 
 export interface ArticleDetailsPageProps {
 	className?: string
@@ -39,6 +39,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 	useInitialEffect(() => {
 		dispatch(fetchCommentsByArticleId(id))
 	})
+
 	const reducers: ReducersList = {
 		articleDetailsPage: articleDetailsPageReducer,
 	}
@@ -50,13 +51,10 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 		[dispatch]
 	)
 
-	if (!id) {
+	if (!id || error) {
 		return <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</Page>
 	}
 
-	if (error) {
-		return <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t("Article not found")}</Page>
-	}
 	return (
 		<DynamicModuleLoader
 			reducers={reducers}

@@ -37,7 +37,10 @@ export const CommentList = (props: CommentListProps) => {
 					/>
 				))
 			) : (
-				<Text title={t("There are no comments yet")} />
+				<Text
+					title={t("There are no comments yet")}
+					className={cls.text}
+				/>
 			)}
 		</div>
 	)

@@ -22,9 +22,9 @@ export const ArticleDetailsRecomendations = memo((props: ArticleDetailsRecomenda
 	const { className } = props
 	const { t } = useTranslation()
 	const dispatch = useAppDispatch()
-	const recomendations = useSelector(getArticleRecomendations.selectAll)
 	const recomendationsIsLoading = useSelector(getArticleDetailsPageRecomendationsIsLoading)
 	const recomendationsError = useSelector(getArticleDetailsPageRecomendationsErorr)
+	const recomendations = useSelector(getArticleRecomendations.selectAll)
 
 	useInitialEffect(() => {
 		dispatch(fetchArticlesRecomendations())
@@ -46,6 +46,7 @@ export const ArticleDetailsRecomendations = memo((props: ArticleDetailsRecomenda
 				isLoading={recomendationsIsLoading}
 				className={classNames(cls.ArticleDetailsRecomendations, {}, [className])}
 				target={"_blank"}
+				recomendation={true}
 			/>
 		</div>
 	)
