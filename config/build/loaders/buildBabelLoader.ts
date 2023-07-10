@@ -13,8 +13,9 @@ export function buildBabelLoader(isDev: boolean) {
 							locales: ["ru", "en"],
 							keyAsDefaultValue: true,
 						},
-					],
-					[isDev && require.resolve("react-refresh/babel")].filter(Boolean),
+						isDev && require.resolve("react-refresh/babel")
+					]
+					.filter(Boolean),
 				],
 			},
 		},
