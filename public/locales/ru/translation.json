@@ -34,5 +34,10 @@
   "Recomendations not found": "Рекомендации не найдены",
   "Edit your article": "Редактировать статью",
   "New article": "Новая статья",
-  "Error": "Ошибка"
+  "Error": "Ошибка",
+  "Currency": "Валюта",
+  "Pick currency": "Выберите валюту",
+  "Country": "Страна",
+  "Pick your country": "Ваша страна",
+  "Your Country": "Ваша страна"
 }

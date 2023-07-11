@@ -2,6 +2,7 @@ import { Select } from "shared/ui/Select"
 import { Country } from "../model/types/country"
 import { useCallback } from "react"
 import { useTranslation } from "react-i18next"
+import { Listbox } from "shared/ui/Listbox"
 
 export interface CountrySelectorProps {
 	className?: string
@@ -28,12 +29,14 @@ export const CountrySelect = (props: CountrySelectorProps) => {
 		[onChange]
 	)
 	return (
-		<Select
-			options={options}
+		<Listbox
+			data={options}
 			onChange={onChangeHandler}
-			value={value}
-			placeholder={t("Страна")}
+			value={value as string}
+			defaultValue={t("Your Country")}
+			label={t("Country") + ">"}
 			readonly={readonly}
+			direction="top"
 		/>
 	)
 }

@@ -10,8 +10,10 @@
   "By": "By",
   "Comment": "Comment",
   "Comments": "Comments",
+  "Country": "Country",
   "Create Article": "Create Article",
   "Created": "Created",
+  "Currency": "Currency",
   "Descending": "Descending",
   "Economic": "Economic",
   "Edit article": "Edit article",
@@ -25,6 +27,8 @@
   "Log in": "Log in",
   "Log out": "Log out",
   "New article": "New article",
+  "Pick currency": "Pick currency",
+  "Pick your country": "Pick your country",
   "Recomendations not found": "Recomendations not found",
   "Science": "Science",
   "Search": {
@@ -42,6 +46,7 @@
   "Views": "Views",
   "Yo": "Yo",
   "You may like": "You may like",
+  "Your Country": "Your Country",
   "search": {
     "": {
       "": {

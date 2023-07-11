@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
-import { Select } from "shared/ui/Select"
 import { Currency } from "../model/types/currency"
 import { useCallback } from "react"
+import { Listbox } from "shared/ui/Listbox"
 
 export interface CurrencySelectProps {
 	value?: Currency
@@ -16,20 +16,22 @@ const options = [
 
 export const CurrencySelect = (props: CurrencySelectProps) => {
 	const { onChange, value, readonly } = props
+	const { t } = useTranslation()
 	const onChangeHandler = useCallback(
 		(value: string) => {
 			onChange?.(value as Currency)
 		},
 		[onChange]
 	)
-	const { t } = useTranslation()
 	return (
-		<Select
-			readonly={readonly}
-			value={value}
-			placeholder={t("Валюта")}
-			options={options}
+		<Listbox
+			data={options}
+			label={t("Currency") + ">"}
 			onChange={onChangeHandler}
+			readonly={readonly}
+			value={value as string}
+			defaultValue={t("Pick currency")}
+			direction="top"
 		/>
 	)
 }
