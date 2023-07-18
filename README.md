@@ -5,11 +5,11 @@
 # логин: admin
 # password: 123
 # Стек технологий
-  1.React
-  2.TS
-  3.RTK Query
-  4.Jest
-  5.Storybook + loki
-  6. i18n, react-router-dom 6.4
-  7. Eslint, stylelint, prettier
-  8. Featured-Slice-Design
+ - 1.React
+ - 2.TS
+ - 3.RTK Query
+ - 4.Jest
+ - 5.Storybook + loki
+ - 6.i18n, react-router-dom 6.4
+ - 7.Eslint, stylelint, prettier
+ - 8.Featured-Slice-Design
